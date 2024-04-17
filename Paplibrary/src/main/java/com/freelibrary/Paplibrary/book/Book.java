@@ -1,118 +1,75 @@
 package com.freelibrary.Paplibrary.book;
 
+import com.freelibrary.Paplibrary.user.User;
 
-import com.freelibrary.Paplibrary.Language;
+import jakarta.persistence.*;
+import lombok.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "book")
 public class Book {
-     private int id;
-     private  String name;
-     private  String author;
-     private Language language;
 
-     private  String publishing_house;
-     private  int publication_year;
-     private float rating;
-     private int votes;
-     private float data_size;
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     private Long bookId;
 
-     public Book(int id, String name, String author, Language language, String publishing_house,
-                 int publication_year, float rating,int votes, float data_size) {
-          this.id = id;
-          this.name = name;
-          this.author = author;
-          this.language = language;
-          this.publishing_house = publishing_house;
-          this.publication_year = publication_year;
-          this.rating = rating;
-          this.votes= votes;
-          this.data_size = data_size;
-     }
+     @Column(name = "title", nullable = false)
+     private String title;
 
-     public int getVotes() {
-          return votes;
-     }
+     @Column(name = "author", nullable = false)
+     private String author;
 
-     public void setVotes(int votes) {
-          this.votes = votes;
-     }
+     @Column(name = "publication_year", nullable = false)
+     private String publicationYear;
 
-     public int getId() {
-          return id;
-     }
+     @Column(name = "genre", nullable = false)
+     private String genre;
 
-     public String getName() {
-          return name;
-     }
+     @Column(name = "description", nullable = false)
+     private String description;
 
-     public String getAuthor() {
-          return author;
-     }
+     @Column(name = "cover_link")
+     private String coverLink;
 
-     public Language getLanguage() {
-          return language;
-     }
+     @Column(name = "star_rating", nullable = false)
+     private String starRating;
 
-     public String getPublishing_house() {
-          return publishing_house;
-     }
+     @Column(name = "language", nullable = false)
+     private String language;
 
-     public int getPublication_year() {
-          return publication_year;
-     }
-
-     public float getRating() {
-          return rating;
-     }
-
-     public float getData_size() {
-          return data_size;
-     }
-
-     public void setId(int id) {
-          this.id = id;
-     }
-
-     public void setName(String name) {
-          this.name = name;
-     }
-
-     public void setAuthor(String author) {
-          this.author = author;
-     }
-
-     public void setLanguage(Language language) {
-          this.language = language;
-     }
-
-     public void setPublishing_house(String publishing_house) {
-          this.publishing_house = publishing_house;
-     }
-
-     public void setPublication_year(int publication_year) {
-          this.publication_year = publication_year;
-     }
-
-     public void setRating(float rating) {
-          this.rating = rating;
-     }
-
-     public void setData_size(float data_size) {
-          this.data_size = data_size;
-     }
-
-     @Override
-     public String toString() {
-          return "Book{" +
-                  "id=" + id +
-                  ", name='" + name + '\'' +
-                  ", author='" + author + '\'' +
-                  ", language=" + language +
-                  ", publishing_house='" + publishing_house + '\'' +
-                  ", publication_year=" + publication_year +
-                  ", rating=" + rating +
-                  ", votes=" + votes +
-                  ", data_size=" + data_size +
-                  '}';
-     }
+     @Column(name = "path", nullable = false)
+     private String path;
 }
+/*
+     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+     @JoinTable(
+             name = "user_book",
+             joinColumns = {@JoinColumn(name = "book_id", referencedColumnName = "book_id")},
+             inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")}
+     )
+     private List<User> users = new ArrayList<>();
+     //  is it good with list of users?
+
+     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+     @JoinTable(
+             name = "book_comment",
+             joinColumns = {@JoinColumn(name = "book_id", referencedColumnName = "book_id")},
+             inverseJoinColumns = {@JoinColumn(name = "comment_id", referencedColumnName = "comment_id")}
+     )
+     private List<Comment> comments = new ArrayList<>();
+*/
+
 
