@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,9 +61,9 @@
 </head>
 <body>
 <div class="navbar">
-  <a href="http://localhost:63343/PAP2024L-Z14/Paplibrary/src/main/resources/templates/home_page.html?_ijt=nqf5ls7lag1uf6lmcobrakb8q8&_ij_reload=RELOAD_ON_SAVE">Home</a>
-  <a href="http://localhost:63343/PAP2024L-Z14/Paplibrary/src/main/resources/templates/login_page.html?_ijt=7eb7burf2t650rvjamdh3564dr&_ij_reload=RELOAD_ON_SAVE">Zarejestruj się</a>
-  <a href="http://localhost:63343/PAP2024L-Z14/Paplibrary/src/main/resources/templates/login_page.html?_ijt=7eb7burf2t650rvjamdh3564dr&_ij_reload=RELOAD_ON_SAVE">Zaloguj się</a>
+  <a th:href="@{/user}" >Home</a>
+  <a th:href="@{/register}" >Zarejestruj się</a>
+  <a th:href="@{/login}" >Zaloguj się</a>
 </div>
 
 <div class="container">
