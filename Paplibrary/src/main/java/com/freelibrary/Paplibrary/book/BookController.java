@@ -26,14 +26,14 @@ public class BookController {
         return "book/home_page";
     }
 
-//
-//    //change
-//    @GetMapping
-//    public String viewHomePage(Model model){
-//        List<BookDto> listBook =  bookServiceImpl.getAllBooks();
-//        model.addAttribute("books",listBook);
-//        return  "book/book";
-//    }
+
+    @GetMapping("/{bookId}")
+    public String showBook(@PathVariable("bookId") Long bookId, Model model) {
+        BookDto bookDto = bookService.findBookById(bookId);
+        model.addAttribute("bookDto", bookDto);
+        return "book/book";
+    }
+
 
     @GetMapping("/newbook")
     public String showNewForm(Model model) {
@@ -43,9 +43,8 @@ public class BookController {
     }
 
 
-
     @PostMapping("/savebook")
-    public String createPost(@Valid @ModelAttribute("book") BookDto bookDto,
+    public String createBook(@Valid @ModelAttribute("book") BookDto bookDto,
                              BindingResult result,
                              Model model){
         if(result.hasErrors()){
@@ -54,13 +53,6 @@ public class BookController {
         }
         bookService.addBook(bookDto);
         return "redirect:/book/";
-    }
-
-
- // do testów only
-    @GetMapping("/deletebook")
-    public String showDelete() {
-        return "book/delete";
     }
 
 
@@ -80,7 +72,7 @@ public class BookController {
     }
 
     @PostMapping("update/{bookId}")
-    public String updatePost(@PathVariable("bookId") Long bookId,
+    public String updateBook(@PathVariable("bookId") Long bookId,
                              @Valid @ModelAttribute("book") BookDto book,
                              BindingResult result,
                              Model model){
@@ -90,7 +82,7 @@ public class BookController {
         }
         book.setBookId(bookId);
         bookService.updateBook(book);
-        return "redirect:/book/";
+        return "redirect:/book/"+bookId;
     }
 
 

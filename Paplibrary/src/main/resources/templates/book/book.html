@@ -1,20 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Details</title>
 </head>
 <body>
-<h1>Book Details</h1>
-<div>
-    <p><strong>Title:</strong> Book Title</p>
-    <p><strong>Author:</strong> Author Name</p>
-    <p><strong>ISBN:</strong> ISBN Number</p>
-</div>
-<div>
-    <a href="/book/edit/1">Edit</a>
-    <a href="/book/delete/1">Delete</a>
-</div>
+<h2>Book Details</h2>
+<p><strong>Title:</strong> <span th:text="${bookDto.title}"></span></p>
+<p><strong>Author:</strong> <span th:text="${bookDto.author}"></span></p>
+<p><strong>Publication Year:</strong> <span th:text="${bookDto.publicationYear}"></span></p>
+<p><strong>Genre:</strong> <span th:text="${bookDto.genre}"></span></p>
+<p><strong>Description:</strong> <span th:text="${bookDto.description}"></span></p>
+<p><strong>Cover Link:</strong> <span th:text="${bookDto.coverLink}"></span></p>
+<p><strong>Star Rating:</strong> <span th:text="${bookDto.starRating}"></span></p>
+<p><strong>Language:</strong> <span th:text="${bookDto.language}"></span></p>
+<p><strong>Path:</strong> <span th:text="${bookDto.path}"></span></p>
+</body>
+    <div>
+        <a th:href="@{/book/edit/{bookId}(bookId=${bookDto.bookId})}">
+            <button>Edit</button>
+        </a>
+        <a th:href="@{/book/delete/{bookId}(bookId=${bookDto.bookId})}">
+            <button>Delete</button>
+        </a>
+    </div>
+
+
 </body>
 </html>
