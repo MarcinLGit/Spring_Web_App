@@ -7,15 +7,33 @@
 </head>
 <body>
 <h1>Add New Book</h1>
-<form action="/book/save" method="post">
+<form action="/book/savebook" method="post">
     <label for="title">Title:</label><br>
     <input type="text" id="title" name="title"><br>
 
     <label for="author">Author:</label><br>
     <input type="text" id="author" name="author"><br>
 
-    <label for="isbn">ISBN:</label><br>
-    <input type="text" id="isbn" name="isbn"><br>
+    <label for="publicationYear">Publication Year:</label><br>
+    <input type="text" id="publicationYear" name="publicationYear"><br>
+
+    <label for="genre">Genre:</label><br>
+    <input type="text" id="genre" name="genre"><br>
+
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description"></textarea><br>
+
+    <label for="coverLink">Cover Link:</label><br>
+    <input type="text" id="coverLink" name="coverLink"><br>
+
+    <label for="starRating">Star Rating:</label><br>
+    <input type="text" id="starRating" name="starRating"><br>
+
+    <label for="language">Language:</label><br>
+    <input type="text" id="language" name="language"><br>
+
+    <label for="path">Path:</label><br>
+    <input type="text" id="path" name="path"><br>
 
     <input type="submit" value="Save">
 </form>

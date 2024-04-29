@@ -1,0 +1,13 @@
+<form role="form" method="post" th:action="@{/book/update/{bookId}(bookId=${book.bookId})}" th:object="${book}">
+
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" th:value="${book.title}"><br>
+
+    <label for="author">Author:</label><br>
+    <input type="text" id="author" name="author" th:value="${book.author}"><br>
+
+    <label for="description">Description:</label><br>
+    <input type="text" id="description" name="description" th:value="${book.description}"><br>
+
+    <input type="submit" value="Save">
+</form>

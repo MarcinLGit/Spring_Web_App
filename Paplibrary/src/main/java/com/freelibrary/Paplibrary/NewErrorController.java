@@ -18,21 +18,21 @@ public class NewErrorController implements ErrorController {
             Integer statusCode = Integer.valueOf(status.toString());
 
             if(statusCode == HttpStatus.FORBIDDEN.value()){
-                return "errors/403";
+                return "error/403";
             }
             else if(statusCode == HttpStatus.NOT_FOUND.value())
-                return "errors/404";
+                return "error/404";
             else if(statusCode== HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-                return "errors/500";
+                return "error/500";
             }
             else if(statusCode== HttpStatus.GATEWAY_TIMEOUT.value()) {
-                return "errors/504";
+                return "error/504";
             }
  else{
-                return "errors/other";
+                return "error/other";
             }
         }
-        return "errors/other";
+        return "error/other";
     }
 }
 

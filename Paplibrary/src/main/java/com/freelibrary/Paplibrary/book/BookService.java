@@ -17,7 +17,7 @@ public interface BookService {
 
     void saveBook(BookDto bookdto);
 
-    void updateBook(Book book);
+    void updateBook(BookDto book);
 
 
 

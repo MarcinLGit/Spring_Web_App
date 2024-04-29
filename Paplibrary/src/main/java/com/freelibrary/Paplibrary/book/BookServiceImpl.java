@@ -31,11 +31,27 @@ public class BookServiceImpl implements BookService {
 
 
 
-    public void updateBook(Book book) {
-        Book bookToUpdate;
-        bookToUpdate = book;
-        bookRepository.save(bookToUpdate);
+//    public void updateBook(BookDto bookDto) {
+//        // Pobierz aktualnie zalogowanego użytkownika
+//        String email = SecurityUtils.getCurrentUser().getUsername();
+//        User createdBy = userRepository.findByEmail(email);
+//
+//        // Mapuj BookDto na obiekt Book
+//        Book book = BookMapper.mapToBook(bookDto);
+//
+//        // Ustaw informacje o tym, kto utworzył książkę
+//        book.setCreatedBy(createdBy);
+//
+//        // Zapisz zaktualizowaną książkę do bazy danych
+//        bookRepository.save(book);
+//    }
+    @Override
+    public void updateBook(BookDto bookDto) {
+        Book book = BookMapper.mapToBook(bookDto);
+        bookRepository.save(book);
     }
+
+
     @Override
     public Book getBook(Long nr_book) {
         return bookRepository.findById(nr_book).orElse(null);
@@ -67,9 +83,10 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDto findBookById(Long bookId) {
-        Book book = bookRepository.findById(bookId).orElse(null);
+        Book book = bookRepository.findById(bookId).get();
         return BookMapper.mapToBookDto(book);
     }
+
 
     @Override
     public void addBook(BookDto bookDto) {
