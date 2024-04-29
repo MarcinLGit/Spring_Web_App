@@ -56,15 +56,10 @@ public class BookController {
         return "redirect:/book/";
     }
 
-    @GetMapping("/edit/{bookId}")
-    public String showEditForm(@PathVariable("bookId") Long bookId, Model model) {
-        BookDto bookDto = bookService.findBookById(bookId);
-        model.addAttribute("bookDto", bookDto);
-        return "book/edit_form";
-    }
 
+ // do testów only
     @GetMapping("/deletebook")
-    public String showEditForm() {
+    public String showDelete() {
         return "book/delete";
     }
 
@@ -77,8 +72,13 @@ public class BookController {
 
 
 
+    @GetMapping("/edit/{bookId}")
+    public String showEditForm(@PathVariable("bookId") Long bookId, Model model) {
+        BookDto bookDto = bookService.findBookById(bookId);
+        model.addAttribute("bookDto", bookDto);
+        return "book/edit_form";
+    }
 
-    // handler method to handle edit post form submit request
     @PostMapping("update/{bookId}")
     public String updatePost(@PathVariable("bookId") Long bookId,
                              @Valid @ModelAttribute("book") BookDto book,

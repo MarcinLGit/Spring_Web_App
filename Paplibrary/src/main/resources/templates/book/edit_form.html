@@ -1,13 +1,42 @@
-<form role="form" method="post" th:action="@{/book/update/{bookId}(bookId=${book.bookId})}" th:object="${book}">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
+</head>
+<body>
+<h2>Edit Book</h2>
+<form action="#" th:action="@{/book/update/{bookId}(bookId=${bookDto.bookId})}" th:object="${bookDto}" method="post">
+    <input type="hidden" th:field="*{bookId}" />
+    <label>Title:</label>
+    <input type="text" th:field="*{title}" /><br/>
 
-    <label for="title">Title:</label><br>
-    <input type="text" id="title" name="title" th:value="${book.title}"><br>
+    <label>Author:</label>
+    <input type="text" th:field="*{author}" /><br/>
 
-    <label for="author">Author:</label><br>
-    <input type="text" id="author" name="author" th:value="${book.author}"><br>
+    <label>Publication Year:</label>
+    <input type="text" th:field="*{publicationYear}" /><br/>
 
-    <label for="description">Description:</label><br>
-    <input type="text" id="description" name="description" th:value="${book.description}"><br>
+    <label>Genre:</label>
+    <input type="text" th:field="*{genre}" /><br/>
 
-    <input type="submit" value="Save">
+    <label>Description:</label>
+    <textarea th:field="*{description}"></textarea><br/>
+
+    <label>Cover Link:</label>
+    <input type="text" th:field="*{coverLink}" /><br/>
+
+    <label>Star Rating:</label>
+    <input type="text" th:field="*{starRating}" /><br/>
+
+    <label>Language:</label>
+    <input type="text" th:field="*{language}" /><br/>
+
+    <label>Path:</label>
+    <input type="text" th:field="*{path}" /><br/>
+
+    <input type="submit" value="Save Changes" />
 </form>
+</body>
+</html>
