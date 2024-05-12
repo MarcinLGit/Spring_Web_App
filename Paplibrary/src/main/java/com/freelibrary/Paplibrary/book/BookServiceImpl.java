@@ -94,6 +94,30 @@ public class BookServiceImpl implements BookService {
         bookRepository.save(book);
     }
 
+    @Override
+    public List<BookDto> searchBooks(String title, String author, String publicationYear,
+                                     String genre, String starRating, String language) {
+        // Pobierz wszystkie książki
+        List<BookDto> allBooks = getAllBooks();
+
+        // Wykonaj filtrowanie na podstawie wszystkich parametrów
+        List<BookDto> filteredBooks = allBooks.stream()
+                .filter(book -> (title == null || book.getTitle().contains(title))
+                        && (author == null || book.getAuthor().contains(author))
+                        && (publicationYear == null || book.getPublicationYear().contains(publicationYear))
+                        && (genre == null || book.getGenre().contains(genre))
+                        && (starRating == null || starRating.isEmpty() || Integer.parseInt(book.getStarRating()) >= Integer.parseInt(starRating))
+                        && (language == null || book.getLanguage().contains(language)))
+                .collect(Collectors.toList());
+
+        return filteredBooks;
+    }
+
+    @Override
+    public BookDto findBookByHash(String bookHash) {
+        Book book = bookRepository.findByHash(bookHash).get();
+        return BookMapper.mapToBookDto(book);
+    }
 
 
 }

@@ -85,5 +85,23 @@ public class BookController {
         return "redirect:/book/"+bookId;
     }
 
+    @GetMapping("/search")
+    public String searchBooks(@RequestParam(required = false) String title,
+                              @RequestParam(required = false) String author,
+                              @RequestParam(required = false) String publicationYear,
+                              @RequestParam(required = false) String genre,
+                              @RequestParam(required = false) String starRating,
+                              @RequestParam(required = false) String language,
+                              Model model) {
+        List<BookDto> books = bookService.searchBooks(title, author, publicationYear, genre, starRating, language);
+        model.addAttribute("books", books);
+        return "/book/search_results";
+
+    }
+
+    @GetMapping("/searcher")
+    public String searcher() {
+        return "/book/searcher";
+    }
 
 }

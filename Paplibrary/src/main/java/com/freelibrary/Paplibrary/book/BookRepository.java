@@ -15,6 +15,7 @@ import java.util.Optional;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
 
+        Optional<Book> findByHash(String hash);
 
         @Query("SELECT b FROM Book b WHERE b.title = :title")
         Optional<Book> findByTitle(@Param("title") String title);
@@ -22,6 +23,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
         @Query("SELECT b FROM Book b WHERE b.author = :author")
         List<Book> findByAuthor(@Param("author") String author);
 
+
+        //nie wiem czy to jest potrzebne
 //TODO make a lot SQL requests for filers
 
 }

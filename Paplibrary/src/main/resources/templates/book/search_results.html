@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+<h1>Search Results</h1>
+<ul>
+    <!-- Iteracja przez listę książek i wyświetlenie ich tytułów -->
+    <li th:each="book : ${books}" th:text="${book.title}"></li>
+</ul>
+</body>
+</html>

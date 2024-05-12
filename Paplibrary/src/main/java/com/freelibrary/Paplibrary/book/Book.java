@@ -1,5 +1,6 @@
 package com.freelibrary.Paplibrary.book;
 
+import com.freelibrary.Paplibrary.comment.Comment;
 import com.freelibrary.Paplibrary.user.User;
 
 import jakarta.persistence.*;
@@ -11,7 +12,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -50,26 +53,19 @@ public class Book {
      @Column(name = "language", nullable = false)
      private String language;
 
+     @Column(name = "hash", nullable = false)
+     private String hash;
+
      @Column(name = "path", nullable = false)
      private String path;
-}
-/*
-     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-     @JoinTable(
-             name = "user_book",
-             joinColumns = {@JoinColumn(name = "book_id", referencedColumnName = "book_id")},
-             inverseJoinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")}
-     )
-     private List<User> users = new ArrayList<>();
-     //  is it good with list of users?
 
-     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-     @JoinTable(
-             name = "book_comment",
-             joinColumns = {@JoinColumn(name = "book_id", referencedColumnName = "book_id")},
-             inverseJoinColumns = {@JoinColumn(name = "comment_id", referencedColumnName = "comment_id")}
-     )
-     private List<Comment> comments = new ArrayList<>();
-*/
+
+//     @ManyToOne
+//     @JoinColumn(name = "added_by", nullable = false)
+//     private User createdBy;
+
+     @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
+     private Set<Comment> comments = new HashSet<>();
+}
 
 

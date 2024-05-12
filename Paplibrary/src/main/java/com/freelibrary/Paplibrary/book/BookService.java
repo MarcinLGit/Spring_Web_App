@@ -30,4 +30,7 @@ public interface BookService {
     List<BookDto> searchBooks(String query);
     BookDto findBookById(Long BookId);
     void addBook(BookDto bookDto);
+    BookDto findBookByHash(String bookHash);
+    List<BookDto> searchBooks(String title, String author, String publicationYear,
+                              String genre, String starRating, String language);
 }

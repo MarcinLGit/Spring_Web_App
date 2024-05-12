@@ -37,4 +37,7 @@ public class BookDto {
     private String language;
 
     @NotEmpty
+    private String hash;
+
+    @NotEmpty
     private String path;}

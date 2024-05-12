@@ -14,6 +14,7 @@ public class BookMapper {
                 .coverLink(book.getCoverLink())
                 .starRating(book.getStarRating())
                 .language(book.getLanguage())
+                .hash((book.getHash()))
                 .path(book.getPath())
                 .build();
     }
@@ -30,6 +31,7 @@ public class BookMapper {
                 .coverLink(bookDto.getCoverLink())
                 .starRating(bookDto.getStarRating())
                 .language(bookDto.getLanguage())
+                .hash(bookDto.getHash())
                 .path(bookDto.getPath())
                 .build();
     }
