@@ -49,6 +49,7 @@ public class BookController {
                              Model model){
         if(result.hasErrors()){
             model.addAttribute("book", bookDto);
+            System.out.println("error occured");
             return "book/new_form";
         }
         bookService.addBook(bookDto);

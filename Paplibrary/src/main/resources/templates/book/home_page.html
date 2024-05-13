@@ -70,70 +70,14 @@
   <input type="text" class="search-input" placeholder="Wyszukaj książkę">
 
   <h2>Przykładowe książki</h2>
-  <div class="book" onclick="window.location.href='https://example.com/book1'">
-    <img src="book1.jpg" alt="Książka 1">
-    <p>Książka 1</p>
+
+  <div th:each="book : ${booksResponse}" class="book">
+    <a th:href="@{'/book/' + ${book.bookId}}">
+      <p th:text="${book.title}"></p>
+    </a>
   </div>
-  <div class="book" onclick="window.location.href='https://example.com/book2'">
-    <img src="book2.jpg" alt="Książka 2">
-    <p>Książka 2</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book3'">
-    <img src="book3.jpg" alt="Książka 3">
-    <p>Książka 3</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book4'">
-    <img src="book4.jpg" alt="Książka 4">
-    <p>Książka 3</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book5'">
-    <img src="book5.jpg" alt="Książka 5">
-    <p>Książka 3</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book6'">
-    <img src="book6.jpg" alt="Książka 6">
-    <p>Książka 3</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book7'">
-    <img src="book7.jpg" alt="Książka 7">
-    <p>Książka 3</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book8'">
-    <img src="book8.jpg" alt="Książka 8">
-    <p>Książka 3</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book9'">
-    <img src="book9.jpg" alt="Książka 9">
-    <p>Książka 3</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book10'">
-    <img src="book10.jpg" alt="Książka 10">
-    <p>Książka 3</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book11'">
-    <img src="book11.jpg" alt="Książka 11">
-    <p>Książka 3</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book12'">
-    <img src="book12.jpg" alt="Książka 12">
-    <p>Książka 3</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book13'">
-    <img src="book13.jpg" alt="Książka 13">
-    <p>Książka 3</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book14'">
-    <img src="book14.jpg" alt="Książka 14">
-    <p>Książka 3</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book15'">
-    <img src="book15.jpg" alt="Książka 15">
-    <p>Książka 3</p>
-  </div>
-  <div class="book" onclick="window.location.href='https://example.com/book16'">
-    <img src="book16.jpg" alt="Książka 16">
-    <p>Książka 3</p>
-  </div>
+
+
 </div>
 </body>
 </html>

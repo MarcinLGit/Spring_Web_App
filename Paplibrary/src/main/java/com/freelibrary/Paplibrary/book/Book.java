@@ -53,7 +53,7 @@ public class Book {
      @Column(name = "language", nullable = false)
      private String language;
 
-     @Column(name = "hash", nullable = false)
+     @Column(name = "hash", nullable = true)
      private String hash;
 
      @Column(name = "path", nullable = false)
