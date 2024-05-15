@@ -50,12 +50,12 @@ public class BookController {
         return "book/book";
     }
 
-    @GetMapping("/{tittle}}")
-    public String showBookByTittle(@PathVariable("tittle") String tittle, Model model) {
-        BookDto bookDto = bookService.findBookByTitle(tittle);
-        model.addAttribute("bookDto", bookDto);
-        return "book/book";
-    }
+//    @GetMapping("/{tittle}}")
+//    public String showBookByTittle(@PathVariable("tittle") String tittle, Model model) {
+//        BookDto bookDto = bookService.findBookByTitle(tittle);
+//        model.addAttribute("bookDto", bookDto);
+//        return "book/book";
+//    }
 
 
     @GetMapping("/newbook")
