@@ -28,16 +28,12 @@ public class BookDto {
     @NotEmpty
     private String description;
 
-    private String coverLink;
 
-    @NotEmpty
     private String starRating;
 
     @NotEmpty
     private String language;
 
-    @NotEmpty
-    private String hash;
 
-    @NotEmpty
-    private String path;}
+    private String hash;
+}

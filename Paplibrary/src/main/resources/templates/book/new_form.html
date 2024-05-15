@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Add New Book</h1>
-<form action="/book/savebook" method="post">
+<form action="/book/savebook" method="post" enctype="multipart/form-data">
     <label for="title">Title:</label><br>
     <input type="text" id="title" name="title"><br>
 
@@ -23,20 +23,11 @@
     <label for="description">Description:</label><br>
     <textarea id="description" name="description"></textarea><br>
 
-    <label for="coverLink">Cover Link:</label><br>
-    <input type="text" id="coverLink" name="coverLink"><br>
-
-    <label for="starRating">Star Rating:</label><br>
-    <input type="text" id="starRating" name="starRating"><br>
-
     <label for="language">Language:</label><br>
     <input type="text" id="language" name="language"><br>
 
-    <label for="hash">Hash:</label><br>
-    <input type="text" id="hash" name="hash" ><br>
-
-    <label for="path">Path:</label><br>
-    <input type="text" id="path" name="path"><br>
+    <label for="file">File to upload:</label><br>
+    <input type="file" id="file" name="file"><br>
 
     <input type="submit" value="Save">
 </form>

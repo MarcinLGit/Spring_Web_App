@@ -3,6 +3,7 @@ package com.freelibrary.Paplibrary.file;
 import java.io.IOException;
 import java.util.stream.Collectors;
 
+import com.freelibrary.Paplibrary.book.BookDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -44,20 +45,27 @@ public class FileUploadController {
 	@ResponseBody
 	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
+
 		Resource file = storageService.loadAsResource(filename);
 
 		if (file == null)
 			return ResponseEntity.notFound().build();
 
-		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
-				"attachment; filename=\"" + file.getFilename() + "\"").body(file);
+		// Pobranie tytułu książki z obiektu BookDto
+		//String title = bookDto.getTitle();
+
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+				.body(file);
 	}
+//, @ModelAttribute BookDto bookDto
+	//file.getFilename()
 
 	@PostMapping("/")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,
 								   RedirectAttributes redirectAttributes) {
 
-		storageService.store(file);
+		storageService.store(file,"x");
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
 

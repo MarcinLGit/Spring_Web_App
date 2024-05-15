@@ -12,10 +12,11 @@
 <p><strong>Publication Year:</strong> <span th:text="${bookDto.publicationYear}"></span></p>
 <p><strong>Genre:</strong> <span th:text="${bookDto.genre}"></span></p>
 <p><strong>Description:</strong> <span th:text="${bookDto.description}"></span></p>
-<p><strong>Cover Link:</strong> <span th:text="${bookDto.coverLink}"></span></p>
 <p><strong>Star Rating:</strong> <span th:text="${bookDto.starRating}"></span></p>
 <p><strong>Language:</strong> <span th:text="${bookDto.language}"></span></p>
-<p><strong>Path:</strong> <span th:text="${bookDto.path}"></span></p>
+
+
+
 </body>
     <div>
         <a th:href="@{/book/edit/{bookId}(bookId=${bookDto.bookId})}">
@@ -23,6 +24,9 @@
         </a>
         <a th:href="@{/book/delete/{bookId}(bookId=${bookDto.bookId})}">
             <button>Delete</button>
+        </a>
+        <a th:href="@{/file/files/{filename}(filename=${bookDto.hash})}">
+            <button>Download</button>
         </a>
     </div>
 

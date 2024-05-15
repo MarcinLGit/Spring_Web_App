@@ -6,9 +6,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import com.freelibrary.Paplibrary.book.BookController;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import  com.freelibrary.Paplibrary.file.storage.StorageService;
+
+
+
+
+import static com.freelibrary.Paplibrary.book.HashCalculator.calculateFileHash;
+
 
 @Controller
 @RequestMapping("/book")
@@ -18,6 +28,12 @@ public class BookController {
     private BookServiceImpl bookServiceImpl;
     @Autowired
     private BookService bookService;
+
+   public final StorageService storageService;
+
+    public BookController(StorageService storageService) {
+        this.storageService = storageService;
+    }
 
     @GetMapping("/")
     public String viewBooks(Model model){
@@ -46,15 +62,29 @@ public class BookController {
     @PostMapping("/savebook")
     public String createBook(@Valid @ModelAttribute("book") BookDto bookDto,
                              BindingResult result,
-                             Model model){
+                             Model model, @RequestParam("file") MultipartFile file){
+        String hash = calculateFileHash(file);
+        bookDto.setHash(hash);
+        bookDto.setStarRating("0");
         if(result.hasErrors()){
             model.addAttribute("book", bookDto);
-            System.out.println("error occured");
+            System.out.println("Error occurred");
             return "book/new_form";
         }
-        bookService.addBook(bookDto);
-        return "redirect:/book/";
+        try {
+            bookService.saveBook(bookDto);
+            storageService.store(file,hash);
+            System.out.println("Book saved successfully");
+            return "redirect:/book/";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
     }
+
+
+
+
 
 
     @GetMapping("/delete/{bookId}")

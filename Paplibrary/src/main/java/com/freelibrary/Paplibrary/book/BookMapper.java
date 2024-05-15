@@ -11,11 +11,9 @@ public class BookMapper {
                 .publicationYear(book.getPublicationYear())
                 .genre(book.getGenre())
                 .description(book.getDescription())
-                .coverLink(book.getCoverLink())
                 .starRating(book.getStarRating())
                 .language(book.getLanguage())
                 .hash((book.getHash()))
-                .path(book.getPath())
                 .build();
     }
 
@@ -28,11 +26,9 @@ public class BookMapper {
                 .publicationYear(bookDto.getPublicationYear())
                 .genre(bookDto.getGenre())
                 .description(bookDto.getDescription())
-                .coverLink(bookDto.getCoverLink())
                 .starRating(bookDto.getStarRating())
                 .language(bookDto.getLanguage())
                 .hash(bookDto.getHash())
-                .path(bookDto.getPath())
                 .build();
     }
 }

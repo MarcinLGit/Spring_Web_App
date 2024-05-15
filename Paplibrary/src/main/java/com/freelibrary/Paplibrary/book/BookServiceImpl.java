@@ -2,8 +2,13 @@ package com.freelibrary.Paplibrary.book;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -57,6 +62,10 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findById(nr_book).orElse(null);
     }
 
+
+
+
+
     @Override
     public void deleteBook(Long nr_book) {
         bookRepository.deleteById(nr_book);
@@ -81,18 +90,14 @@ public class BookServiceImpl implements BookService {
     }
 
 
+
     @Override
     public BookDto findBookById(Long bookId) {
         Book book = bookRepository.findById(bookId).get();
+        System.out.println(book);
         return BookMapper.mapToBookDto(book);
     }
 
-
-    @Override
-    public void addBook(BookDto bookDto) {
-        Book book = BookMapper.mapToBook(bookDto);
-        bookRepository.save(book);
-    }
 
     @Override
     public List<BookDto> searchBooks(String title, String author, String publicationYear,

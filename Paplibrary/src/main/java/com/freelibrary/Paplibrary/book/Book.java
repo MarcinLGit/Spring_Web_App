@@ -25,6 +25,8 @@ import java.util.Set;
 @Table(name = "book")
 public class Book {
 
+
+
      @Id
      @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long bookId;
@@ -44,20 +46,19 @@ public class Book {
      @Column(name = "description", nullable = false)
      private String description;
 
-     @Column(name = "cover_link")
-     private String coverLink;
 
-     @Column(name = "star_rating", nullable = false)
+
+
+     @Column(name = "star_rating")
      private String starRating;
 
      @Column(name = "language", nullable = false)
      private String language;
 
-     @Column(name = "hash", nullable = true)
-     private String hash;
+     @Column(name = "hash")
+     private String hash ;
 
-     @Column(name = "path", nullable = false)
-     private String path;
+
 
 
 //     @ManyToOne
