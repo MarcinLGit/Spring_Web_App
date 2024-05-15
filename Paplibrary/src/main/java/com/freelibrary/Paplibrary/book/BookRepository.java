@@ -21,13 +21,5 @@ public interface BookRepository extends JpaRepository<Book, Long> {
         Optional<Book> findByTitle(@Param("title") String title);
 
 
-
-        @Query("SELECT b FROM Book b WHERE b.author = :author")
-        List<Book> findByAuthor(@Param("author") String author);
-
-
-        //nie wiem czy to jest potrzebne
-//TODO make a lot SQL requests for filers
-
 }
 

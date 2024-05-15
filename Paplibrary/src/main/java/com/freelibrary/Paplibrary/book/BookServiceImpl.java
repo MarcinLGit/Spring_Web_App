@@ -57,14 +57,6 @@ public class BookServiceImpl implements BookService {
     }
 
 
-    @Override
-    public Book getBook(Long nr_book) {
-        return bookRepository.findById(nr_book).orElse(null);
-    }
-
-
-
-
 
     @Override
     public void deleteBook(Long nr_book) {
@@ -76,19 +68,6 @@ public class BookServiceImpl implements BookService {
         Optional<Book> bookOptional = bookRepository.findByTitle(title);
         return bookOptional.map(BookMapper::mapToBookDto).orElse(null);
     }
-
-    @Override
-    public List<BookDto> findBookByAuthor(String author) {
-        List<Book> books = bookRepository.findByAuthor(author);
-        return books.stream().map(BookMapper::mapToBookDto).collect(Collectors.toList());
-    }
-
-
-    @Override
-    public List<BookDto> searchBooks(String query) {
-        return null;
-    }
-
 
 
     @Override

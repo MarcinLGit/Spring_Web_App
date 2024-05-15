@@ -21,13 +21,13 @@ public interface BookService {
 
 
 
-    Book getBook(Long nr_book);
+
 
     void deleteBook(Long nr_book);
 
     BookDto findBookByTitle(String title);
-    List<BookDto> findBookByAuthor(String author);
-    List<BookDto> searchBooks(String query);
+
+
     BookDto findBookById(Long BookId);
 
     BookDto findBookByHash(String bookHash);

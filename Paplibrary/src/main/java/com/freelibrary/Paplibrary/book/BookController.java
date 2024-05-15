@@ -44,8 +44,15 @@ public class BookController {
 
 
     @GetMapping("/{bookId}")
-    public String showBook(@PathVariable("bookId") Long bookId, Model model) {
+    public String showBookById(@PathVariable("bookId") Long bookId, Model model) {
         BookDto bookDto = bookService.findBookById(bookId);
+        model.addAttribute("bookDto", bookDto);
+        return "book/book";
+    }
+
+    @GetMapping("/{tittle}}")
+    public String showBookByTittle(@PathVariable("tittle") String tittle, Model model) {
+        BookDto bookDto = bookService.findBookByTitle(tittle);
         model.addAttribute("bookDto", bookDto);
         return "book/book";
     }
@@ -81,9 +88,6 @@ public class BookController {
             return "error";
         }
     }
-
-
-
 
 
 
