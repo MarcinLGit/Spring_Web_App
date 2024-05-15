@@ -1,0 +1,154 @@
+kopjowanie
+String = 
+charAt
+
+
+Integer.parseInt(s);
+Scanner sc = new Scanner(System.in)
+String age = sc.nextLine();
+
+ArrayList<String> cars = new ArrayList<String>();
+cars.add("Syrenka"); //dodaje na końcu
+cars.remove(1);
+cars.size()
+cars.clean() wszystko czysci
+cars.add(1, "Fiat 126p"); // dodaj na pozycji 1,
+get i set- set tylko zamienia dane
+
+11 System.out.println(cars);
+ 12 for (String car : cars)
+ 13
+ // cars.clear() czysci wszystko
+ // [Syrenka, Polonez]
+ System.out.println(car);
+
+// Szuka indeksu pierwszego wystąpienia "Syrenka"
+        int firstIndex = cars.indexOf("Syrenka");
+        wystąpienia 'Syrenka': " + firstIndex);
+        
+        // Szuka indeksu ostatniego wystąpienia "Syrenka"
+        int lastIndex = cars.lastIndexOf("Syrenka");
+java.util.Collections.sort(cars);
+
+ //przegladamylistezapomocaiteratora
+ 11 varitr=list.iterator();//pobranieiteratora
+ 12 while(itr.hasNext()){//sprawdzenieczycosjeszczejest
+ 13 System.out.println(itr.next());//pobranieelementuiprzesunieciedoprzodu
+
+
+for(Stringperson:list){
+ 11 System.out.println(person);
+ 12 }
+
+ list.forEach(a->{//tuuzywamywyrazenialambda
+ 11 System.out.println(a);
+ 12 });
+
+LinkedList- lista dwukierunkowa
+(addFirst, addLast,
+ removeFirst, removeLast, getFirst, getLast
+
+Arrays.asList() tworzy list¦ opart¡ na tablicy
+
+//
+ //zmiana w tablicy zmienia list
+ // Abcd:
+
+
+zwykªe Arrays.asList() tworzy list¦ opart¡ na tablicy
+ • która jest niemody kowalna
+
+
+ List<String>lista = new ArrayList<>(Arrays.asList(arr));
+ 9 lista.add("e"); //kopia-moznamodyfikowac
+ 10 arr[0]="A"; //zmianawtablicyniezmienialisty
+ 11 lista.forEach(e->System.out.print(e));
+ 12 System.out.println(""); //abcde:
+
+
+proces- aplikacja posiadaj¡ca wªasne ±rodowisko (np. przestrze« adresow¡)
+ w¡tek- w ramach procesu mo»e jednocze±nie dziaªa¢ kilka w¡tków.
+ • Maj¡ wspóln¡ przestrze« adresow¡ (bo to pami¦¢ procesu) oraz wszelkie zasoby
+
+
+
+Thread
+każdy objekt musi implementować interface Runnable
+(new Thread(new HelloRunnable())).start();
+
+
+
+1 public class HelloThread extends Thread {
+  }
+ public void run() {
+ }
+ System.out.println("Hello from a thread!");
+ public static void main(String args[]) { page 126
+
+Thread.sleep InterruptedException e
+można przerwać interruptem
+
+
+jak dªugo takich metod nie woªamy to trzeba zawoªa¢ if
+ (Thread.interrupted())
+ • wten sposób zerowana jest aga mówi¡ca o ch¦ci przerwania
+ • mo»na jej nie zerowa¢ za pomoc¡ if (Thread.isInterrupted())
+
+
+jeden w¡tek mo»e poczeka¢ na drugi za pomoc¡ t.join(); (bezterminowo)
+ lub t.join(2000); (2 sekundy)
+ • t.isAlive() zwraca informacj¦, czy w¡tek si¦ nie sko«czyª
+ • Thread.currentThread().getName() zwraca nazw¦ w¡tku
+
+
+
+semafora
+
+Jak kilka w¡tków wykorzystuje ten sam obiekt to mo»e by¢ problem wy±cigów
+ • Ale tylko jeden w¡tek mo»e by¢ w metodzie synchronizowanej tego samego
+ obiektu
+ • To samo zrealizowane za pomoc¡ semafora
+ 1 public class SemaphoreCounter {
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+ 10
+ 11
+ 12
+ 13
+ 14 }
+ // wartosc poczatkowa,czy uczciwie
+ private final Semaphore available = new Semaphore(1, true);
+ private int c = 0;
+ public void increment() {
+ }
+ available.acquire(); c++; available.release();
+ public void decrement() {
+ }
+ available.acquire(); c--; available.release();
+ public int value() {
+ }
+
+
+
+
+Synchronized
+dać to w nagłówku metody
+
+
+https://www.w3schools.com/java/java_ref_string.asp
+
+
+
+ je»eli s¡kon iktynazwzaktualn¡klas¡u»ywamysªowasuperzkropk¡
+ • tegosamegosªowau»ywamygdywoªamykonstruktorklasybazowej
+
+
+
+GiveMeMyPrize1$
+ 

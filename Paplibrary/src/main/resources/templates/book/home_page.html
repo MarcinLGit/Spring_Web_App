@@ -4,6 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Strona główna księgarni</title>
+  <form action="/book/search" method="get">
+    <input type="text" name="title" placeholder="Title">
+    <input type="text" name="author" placeholder="Author">
+    <input type="text" name="publicationYear" placeholder="Publication Year">
+    <input type="text" name="genre" placeholder="Genre">
+    <input type="text" name="starRating" placeholder="Star Rating">
+    <input type="text" name="language" placeholder="Language">
+    <button type="submit">Search</button>
+  </form>
   <style>
     body {
       font-family: Arial, sans-serif;

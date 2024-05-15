@@ -58,8 +58,7 @@ public class FileUploadController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
 				.body(file);
 	}
-//, @ModelAttribute BookDto bookDto
-	//file.getFilename()
+
 
 	@PostMapping("/")
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,

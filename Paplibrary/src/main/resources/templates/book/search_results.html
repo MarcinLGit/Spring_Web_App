@@ -8,9 +8,18 @@
 </head>
 <body>
 <h1>Search Results</h1>
-<ul>
-    <!-- Iteracja przez listę książek i wyświetlenie ich tytułów -->
-    <li th:each="book : ${books}" th:text="${book.title}"></li>
-</ul>
+
+
+
+
+
+
+<div th:each="book : ${books}" class="book">
+    <a th:href="@{'/book/' + ${book.bookId}}">
+        <p th:text="${book.title}"></p>
+    </a>
+
+
+
 </body>
 </html>

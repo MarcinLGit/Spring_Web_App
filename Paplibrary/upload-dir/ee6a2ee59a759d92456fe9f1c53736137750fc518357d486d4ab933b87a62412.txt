@@ -1,0 +1,15 @@
+linea  nft
+
+1  https://epic-movement.nfts2.me/		2
+2  https://linea-sphere.nfts2.me/		2
+3  https://linea-shards.nfts2.me/		4
+4  https://excellentflash.nfts2.me/
+5  https://linea-distortion.nfts2.me/		2
+6  https://linart.nfts2.me/
+7  https://lineacube.nfts2.me/
+8  https://linea-waves.nfts2.me/		2
+9  https://fantastic-ball.nfts2.me/
+10 https://infinity-linea.nfts2.me/		1
+11 https://strangeglow.nfts2.me/
+12 https://linea-reflection.nfts2.me/		2
+13 https://ether-lin.nfts2.me/			23
