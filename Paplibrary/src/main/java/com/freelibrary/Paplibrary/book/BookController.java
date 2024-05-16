@@ -1,5 +1,8 @@
 package com.freelibrary.Paplibrary.book;
 
+import com.freelibrary.Paplibrary.comment.Comment;
+import com.freelibrary.Paplibrary.comment.CommentDto;
+import com.freelibrary.Paplibrary.comment.CommentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 import  com.freelibrary.Paplibrary.file.storage.StorageService;
 
 
@@ -29,7 +35,9 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
-   public final StorageService storageService;
+    @Autowired
+    private CommentService commentService;
+    public final StorageService storageService;
 
     public BookController(StorageService storageService) {
         this.storageService = storageService;
@@ -49,6 +57,20 @@ public class BookController {
         model.addAttribute("bookDto", bookDto);
         return "book/book";
     }
+
+//    @GetMapping("/{bookId}")
+//    public String showBookDetails(@PathVariable Long bookId, Model model) {
+//        BookDto bookDto = bookService.findBookById(bookId);
+//        if (bookDto != null) {
+//            List<CommentDto> comments = commentService.findCommentsByBookId(bookId);
+//            model.addAttribute("book", bookDto);
+//            model.addAttribute("comments", comments);
+//            return "book/book"; // Widok do wyświetlenia szczegółów książki
+//        } else {
+//            return "book/"; // Widok dla przypadku, gdy książka nie została znaleziona
+//        }
+//    }
+
 
 //    @GetMapping("/{tittle}}")
 //    public String showBookByTittle(@PathVariable("tittle") String tittle, Model model) {
@@ -137,6 +159,17 @@ public class BookController {
     @GetMapping("/searcher")
     public String searcher() {
         return "/book/searcher";
+    }
+
+
+    @GetMapping("/addcomment")
+    public String addcomment() {
+        return "/book/book_comment";
+    }
+
+    @GetMapping("/getcomment")
+    public String agetcomment() {
+        return "/book/getcomments";
     }
 
 }

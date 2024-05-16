@@ -31,9 +31,9 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void createComment(String bookHash, CommentDto commentDto) {
+    public void createComment(Long bookId, CommentDto commentDto) {
 
-        Book book = bookRepository.findByHash(bookHash).get(); // co to znaczy?
+        Book book = bookRepository.findById(bookId).get(); // co to znaczy?
         Comment comment = CommentMapper.mapToComment(commentDto);
         comment.setBook(book);
         commentRepository.save(comment);
@@ -46,6 +46,8 @@ public class CommentServiceImpl implements CommentService {
                 .map(CommentMapper::mapToCommentDto)
                 .collect(Collectors.toList());
     }
+
+    //tutaj raczej listAll to this book?
 
     @Override
     public void deleteComment(Long commentId) {
@@ -66,6 +68,16 @@ public class CommentServiceImpl implements CommentService {
         User createdBy = userRepository.findByEmail(email);
         Long userId = createdBy.getId();
         List<Comment> comments = commentRepository.findCommentsByBook(userId);
+        return comments.stream()
+                .map((comment) -> CommentMapper.mapToCommentDto(comment))
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
+    public List<CommentDto> findCommentsByBookId(Long bookId) {
+
+        List<Comment> comments = commentRepository.findCommentsByBookId(bookId);
         return comments.stream()
                 .map((comment) -> CommentMapper.mapToCommentDto(comment))
                 .collect(Collectors.toList());

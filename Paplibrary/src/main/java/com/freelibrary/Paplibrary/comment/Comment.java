@@ -26,7 +26,7 @@ public class Comment {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String email;
 
     @Lob
@@ -39,6 +39,6 @@ public class Comment {
     private LocalDateTime updatedOn;
 
     @ManyToOne
-    @JoinColumn(name = "book_id", nullable = false)
+    @JoinColumn(name = "bookId", nullable = false)
     private Book book;
 }

@@ -67,6 +67,7 @@ public class Book {
 
      @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
      private Set<Comment> comments = new HashSet<>();
+
 }
 
 

@@ -8,7 +8,13 @@ import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
-    @Query(value = "select c.* from comments c inner join posts p\n" +
-            "where c.post_id = p.id and p.created_by =:userId", nativeQuery = true)
+    @Query(value = "select c.* from comments c inner join books p\n" +
+            "where c.book_id = b.id and p.created_by =:userId", nativeQuery = true)
     List<Comment> findCommentsByBook(Long userId);
+
+
+    @Query(value = "select c.* from comments c\n" +
+            "inner join books b on c.book_id = b.book_id\n" +
+            "where b.book_id = :bookId\n", nativeQuery = true)
+    List<Comment> findCommentsByBookId(Long bookId);
 }
