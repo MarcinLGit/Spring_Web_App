@@ -6,6 +6,8 @@ import com.freelibrary.Paplibrary.comment.CommentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import com.freelibrary.Paplibrary.book.BookController;
@@ -96,9 +98,12 @@ public class BookController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/delete/{bookId}")
     public String delete(@PathVariable("bookId") Long bookId) {
+        
         bookService.deleteBook(bookId);
         return "redirect:/book/";
     }
+
+
 
 
 
