@@ -51,25 +51,27 @@ public class BookController {
     }
 
 
-    @GetMapping("/{bookId}")
+
+
+        @GetMapping("/{bookId}")
     public String showBookById(@PathVariable("bookId") Long bookId, Model model) {
         BookDto bookDto = bookService.findBookById(bookId);
+        List<CommentDto> comments = commentService.findCommentsByBookId(bookId);
         model.addAttribute("bookDto", bookDto);
+        model.addAttribute("comments", comments);
         return "book/book";
     }
 
+
+
 //    @GetMapping("/{bookId}")
-//    public String showBookDetails(@PathVariable Long bookId, Model model) {
+//    public String showBookById(@PathVariable("bookId") Long bookId, Model model) {
 //        BookDto bookDto = bookService.findBookById(bookId);
-//        if (bookDto != null) {
-//            List<CommentDto> comments = commentService.findCommentsByBookId(bookId);
-//            model.addAttribute("book", bookDto);
-//            model.addAttribute("comments", comments);
-//            return "book/book"; // Widok do wyświetlenia szczegółów książki
-//        } else {
-//            return "book/"; // Widok dla przypadku, gdy książka nie została znaleziona
-//        }
+//        model.addAttribute("bookDto", bookDto);
+//        return "book/book";
 //    }
+
+
 
 
 //    @GetMapping("/{tittle}}")

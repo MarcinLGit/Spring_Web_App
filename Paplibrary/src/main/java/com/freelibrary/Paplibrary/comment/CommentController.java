@@ -45,18 +45,9 @@ public class CommentController {
         commentService.createComment(bookId, commentDto);
         return "redirect:/book/" + bookId;
     }
-    //to nie używa sie
-    @GetMapping("/{bookId}/getcomments")
-    public String showBookDetails(@PathVariable Long bookId, Model model) {
-        BookDto bookDto = bookService.findBookById(bookId);
-        if (bookDto != null) {
-            List<CommentDto> comments = commentService.findCommentsByBookId(bookId);
-            model.addAttribute("book", bookDto);
-            model.addAttribute("comments", comments);
-            return "book/getcomments"; // Twój widok do wyświetlenia szczegółów książki
-        } else {
-            return "book/"; // Widok dla przypadku, gdy książka nie została znaleziona
-        }
+    @GetMapping("/{bookId}/comments")
+    public List<CommentDto> getCommentsByBookId(@PathVariable Long bookId) {
+        return commentService.findCommentsByBookId(bookId);
     }
 
 

@@ -31,6 +31,17 @@
     </div>
 
 
+<h2>Comments</h2>
+<div th:if="${comments.isEmpty()}">
+    <p>No comments available for this book.</p>
+</div>
+<div th:if="${not comments.isEmpty()}">
+    <ul>
+        <li th:each="comment : ${comments}">
+            <p><strong>Comment:</strong> <span th:text="${comment.getContent()}"></span></p>
+        </li>
+    </ul>
+</div>
 
 
 
