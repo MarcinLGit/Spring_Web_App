@@ -5,6 +5,7 @@ import com.freelibrary.Paplibrary.comment.CommentDto;
 import com.freelibrary.Paplibrary.comment.CommentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import com.freelibrary.Paplibrary.book.BookController;
@@ -50,9 +51,6 @@ public class BookController {
         return "book/home_page";
     }
 
-
-
-
         @GetMapping("/{bookId}")
     public String showBookById(@PathVariable("bookId") Long bookId, Model model) {
         BookDto bookDto = bookService.findBookById(bookId);
@@ -61,25 +59,6 @@ public class BookController {
         model.addAttribute("comments", comments);
         return "book/book";
     }
-
-
-
-//    @GetMapping("/{bookId}")
-//    public String showBookById(@PathVariable("bookId") Long bookId, Model model) {
-//        BookDto bookDto = bookService.findBookById(bookId);
-//        model.addAttribute("bookDto", bookDto);
-//        return "book/book";
-//    }
-
-
-
-
-//    @GetMapping("/{tittle}}")
-//    public String showBookByTittle(@PathVariable("tittle") String tittle, Model model) {
-//        BookDto bookDto = bookService.findBookByTitle(tittle);
-//        model.addAttribute("bookDto", bookDto);
-//        return "book/book";
-//    }
 
 
     @GetMapping("/newbook")
@@ -114,7 +93,7 @@ public class BookController {
     }
 
 
-
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/delete/{bookId}")
     public String delete(@PathVariable("bookId") Long bookId) {
         bookService.deleteBook(bookId);
@@ -158,10 +137,6 @@ public class BookController {
 
     }
 
-    @GetMapping("/searcher")
-    public String searcher() {
-        return "/book/searcher";
-    }
 
 
     @GetMapping("/addcomment")
@@ -169,9 +144,6 @@ public class BookController {
         return "/book/book_comment";
     }
 
-    @GetMapping("/getcomment")
-    public String agetcomment() {
-        return "/book/getcomments";
-    }
+
 
 }
