@@ -47,4 +47,6 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "bookId", nullable = false)
     private Book book;
+
+
 }

@@ -12,6 +12,7 @@ import com.freelibrary.Paplibrary.comment.CommentService;
 import com.freelibrary.Paplibrary.util.SecurityUtils;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,7 +36,14 @@ public class CommentServiceImpl implements CommentService {
 
         Book book = bookRepository.findById(bookId).get(); // co to znaczy?
         Comment comment = CommentMapper.mapToComment(commentDto);
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User user = userRepository.findByEmail(email);
+        LocalDateTime currentDateTime = LocalDateTime.now();
         comment.setBook(book);
+        comment.setCreatedBy(user);
+        comment.setEmail(email);
+        comment.setCreatedOn(currentDateTime);
+        comment.setName("Temp name suka");
         commentRepository.save(comment);
     }
 

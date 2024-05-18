@@ -38,7 +38,7 @@ public class CommentController {
         if(result.hasErrors()){
             model.addAttribute("book", bookDto);
             model.addAttribute("comment", commentDto);
-           // return "book/book_comment";
+            // return "book/book_comment";
             return "/book/";
         }
 

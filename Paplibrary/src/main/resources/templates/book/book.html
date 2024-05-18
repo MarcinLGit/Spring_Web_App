@@ -30,6 +30,44 @@
         </a>
     </div>
 
+<div class="card">
+    <div class="card-header">
+        <h2>Leave a comment</h2>
+    </div>
+    <div class="card-body">
+        <form
+                role="form"
+                method="post"
+                th:action="@{/{bookId}/comments(bookId=${bookId})}"
+                th:object="${comment}"
+        >
+
+
+
+
+            <div class="row">
+                <div class="col-md-9 mb-3">
+
+                    <div class="form-group">
+
+                        <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-5">
+                    <button
+                            class="btn btn-primary"
+                            type="submit"
+                    >
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 <h2>Comments</h2>
 <div th:if="${comments.isEmpty()}">
