@@ -62,7 +62,22 @@ public class BookController {
         return "book/book";
     }
 
+    // z chatu dla weryfikacji  czy trzeba pokazywać przycisk delete i td
+    /*
+    @GetMapping("/book/{id}")
+    public String viewBook(@PathVariable Long id, Model model, Authentication authentication) {
+        Book book = bookService.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
+        model.addAttribute("book", book);
 
+        String email = authentication.getName();
+        User currentUser = userRepository.findByEmail(email);
+        model.addAttribute("currentUser", currentUser);
+
+        return "book/view";
+    }
+    */
+
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/newbook")
     public String showNewForm(Model model) {
         BookDto bookDto = new BookDto();
@@ -70,7 +85,7 @@ public class BookController {
         return "book/new_form";
     }
 
-
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/savebook")
     public String createBook(@Valid @ModelAttribute("book") BookDto bookDto,
                              BindingResult result,
@@ -98,7 +113,7 @@ public class BookController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/delete/{bookId}")
     public String delete(@PathVariable("bookId") Long bookId) {
-        
+
         bookService.deleteBook(bookId);
         return "redirect:/book/";
     }
@@ -106,7 +121,7 @@ public class BookController {
 
 
 
-
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/edit/{bookId}")
     public String showEditForm(@PathVariable("bookId") Long bookId, Model model) {
         BookDto bookDto = bookService.findBookById(bookId);
@@ -114,6 +129,7 @@ public class BookController {
         return "book/edit_form";
     }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("update/{bookId}")
     public String updateBook(@PathVariable("bookId") Long bookId,
                              @Valid @ModelAttribute("book") BookDto book,
@@ -147,6 +163,12 @@ public class BookController {
     @GetMapping("/addcomment")
     public String addcomment() {
         return "/book/book_comment";
+    }
+
+
+    @GetMapping("/lox")
+    public String lox() {
+        return "/user/lox";
     }
 
 

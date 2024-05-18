@@ -46,7 +46,8 @@ public class Book {
      @Column(name = "description", nullable = false)
      private String description;
 
-
+     @Column(nullable = true)
+     private String email;
 
 
      @Column(name = "star_rating")
@@ -58,12 +59,10 @@ public class Book {
      @Column(name = "hash")
      private String hash ;
 
+     @ManyToOne
+     @JoinColumn(name = "added_by", nullable = true)
+     private User addedBy;
 
-
-
-//     @ManyToOne
-//     @JoinColumn(name = "added_by", nullable = false)
-//     private User createdBy;
 
      @OneToMany(mappedBy = "book", cascade = CascadeType.REMOVE)
      private Set<Comment> comments = new HashSet<>();

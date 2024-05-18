@@ -18,15 +18,9 @@ public interface BookService {
     void saveBook(BookDto bookdto);
 
     void updateBook(BookDto book);
-
-
-
-
+    List<BookDto> getBooksByUser();
 
     void deleteBook(Long nr_book);
-
-    BookDto findBookByTitle(String title);
-
 
     BookDto findBookById(Long BookId);
 

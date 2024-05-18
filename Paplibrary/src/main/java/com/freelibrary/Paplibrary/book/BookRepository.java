@@ -17,9 +17,8 @@ public interface BookRepository extends JpaRepository<Book, Long> {
 
         Optional<Book> findByHash(String hash);
 
-        @Query("SELECT b FROM Book b WHERE b.title = :title")
-        Optional<Book> findByTitle(@Param("title") String title);
-
+        @Query(value = "select * from book b where b.added_by =:userId", nativeQuery = true)
+        List<Book> findBooksByUser(Long userId);
 
 }
 

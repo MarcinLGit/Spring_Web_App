@@ -1,6 +1,7 @@
 package com.freelibrary.Paplibrary.comment;
 
 import com.freelibrary.Paplibrary.book.Book;
+import com.freelibrary.Paplibrary.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -37,6 +38,11 @@ public class Comment {
 
     @UpdateTimestamp
     private LocalDateTime updatedOn;
+
+
+    @ManyToOne
+    @JoinColumn(name = "created_by", nullable = true)
+    private User createdBy;
 
     @ManyToOne
     @JoinColumn(name = "bookId", nullable = false)

@@ -1,5 +1,8 @@
 package com.freelibrary.Paplibrary.book;
 
+import com.freelibrary.Paplibrary.user.User;
+import com.freelibrary.Paplibrary.user.UserRepository;
+import com.freelibrary.Paplibrary.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +23,9 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public List<BookDto> getAllBooks() {
         List<Book> books = bookRepository.findAll();
@@ -30,44 +36,46 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void saveBook(BookDto bookDto) {
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User user = userRepository.findByEmail(email);
         Book book = BookMapper.mapToBook(bookDto);
+        book.setAddedBy(user);
         bookRepository.save(book);
     }
 
 
-
-//    public void updateBook(BookDto bookDto) {
-//        // Pobierz aktualnie zalogowanego użytkownika
-//        String email = SecurityUtils.getCurrentUser().getUsername();
-//        User createdBy = userRepository.findByEmail(email);
-//
-//        // Mapuj BookDto na obiekt Book
-//        Book book = BookMapper.mapToBook(bookDto);
-//
-//        // Ustaw informacje o tym, kto utworzył książkę
-//        book.setCreatedBy(createdBy);
-//
-//        // Zapisz zaktualizowaną książkę do bazy danych
-//        bookRepository.save(book);
-//    }
     @Override
     public void updateBook(BookDto bookDto) {
-        Book book = BookMapper.mapToBook(bookDto);
-        bookRepository.save(book);
+
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User user = userRepository.findByEmail(email);
+        Long nr_book = bookDto.getBookId();
+        Book book = bookRepository.findById(nr_book).get();
+
+        if(user.getId() != book.getAddedBy().getId()) {
+            throw new SecurityException("You are not authorized to delete this book");
+        }
+        Book book1 = BookMapper.mapToBook(bookDto);
+        book1.setAddedBy(book.getAddedBy());
+        book1.setHash(book.getHash());
+        book1.setEmail(book1.getEmail());
+        bookRepository.save(book1);
     }
 
 
 
     @Override
     public void deleteBook(Long nr_book) {
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User user = userRepository.findByEmail(email);
+        Book book = bookRepository.findById(nr_book).get();
+
+        if(user.getId() != book.getAddedBy().getId()) {
+            throw new SecurityException("You are not authorized to delete this book");
+        }
         bookRepository.deleteById(nr_book);
     }
 
-    @Override
-    public BookDto findBookByTitle(String title) {
-        Optional<Book> bookOptional = bookRepository.findByTitle(title);
-        return bookOptional.map(BookMapper::mapToBookDto).orElse(null);
-    }
 
 
     @Override
@@ -101,6 +109,17 @@ public class BookServiceImpl implements BookService {
     public BookDto findBookByHash(String bookHash) {
         Book book = bookRepository.findByHash(bookHash).get();
         return BookMapper.mapToBookDto(book);
+    }
+
+
+    public List<BookDto> getBooksByUser() {
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User createdBy = userRepository.findByEmail(email);
+        Long userId = createdBy.getId();
+        List<Book> books = bookRepository.findBooksByUser(userId);
+        return books.stream()
+                .map(BookMapper::mapToBookDto)
+                .collect(Collectors.toList());
     }
 
 
