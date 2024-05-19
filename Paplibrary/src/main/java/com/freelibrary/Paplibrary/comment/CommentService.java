@@ -1,5 +1,7 @@
 package com.freelibrary.Paplibrary.comment;
 
+import com.freelibrary.Paplibrary.book.BookDto;
+
 import java.util.List;
 
 public interface CommentService {
@@ -12,4 +14,5 @@ public interface CommentService {
     List<CommentDto> findCommentsByBook();
     List<CommentDto> findCommentsByBookId(Long bookId);
     CommentDto findCommentById(Long commentId);
+
 }

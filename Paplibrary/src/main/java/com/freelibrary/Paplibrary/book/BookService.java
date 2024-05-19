@@ -23,6 +23,7 @@ public interface BookService {
     void deleteBook(Long nr_book);
 
     BookDto findBookById(Long BookId);
+    Long getUserOwner(BookDto bookDto);
 
     BookDto findBookByHash(String bookHash);
     List<BookDto> searchBooks(String title, String author, String publicationYear,

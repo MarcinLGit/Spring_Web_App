@@ -84,6 +84,12 @@ public class BookServiceImpl implements BookService {
         System.out.println(book);
         return BookMapper.mapToBookDto(book);
     }
+////////////////////////////////////////////////////////////////////////////
+    @Override
+    public Long getUserOwner(BookDto bookDto) {
+        Long userOwner= bookRepository.findById(bookDto.getBookId()).get().getAddedBy().getId();
+        return userOwner;
+    }
 
 
     @Override

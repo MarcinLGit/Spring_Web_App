@@ -22,6 +22,7 @@
 
 
 <div th:if="${currentUser != null}">
+    <div th:if="${bookOwner == true}">
 
         <a th:href="@{/book/edit/{bookId}(bookId=${bookDto.bookId})}">
             <button>Edit</button>
@@ -33,6 +34,7 @@
             <button>Download</button>
         </a>
     </div>
+</div>
 
 
 <div class="card">
@@ -83,7 +85,9 @@
         <li th:each="comment : ${comments}">
             <p><strong>Comment:</strong> <span th:text="${comment.content}"></span></p>
             <div th:if="${currentUser != null}">
-                
+                <div th:if="${currentUser == comment.getAddedby()}">
+
+
             <a th:href="@{/book/{bookId}/comment/edit/{commentId}(bookId=${bookDto.bookId}, commentId=${comment.id})}">
                 <button>Edit Comment</button>
             </a>

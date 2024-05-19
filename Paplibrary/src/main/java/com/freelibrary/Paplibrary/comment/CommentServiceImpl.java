@@ -117,14 +117,28 @@ public class CommentServiceImpl implements CommentService {
     }
 
     //sprawdzić czy to nie jest to samo bo wygląda podobnie
+//    @Override
+//    public List<CommentDto> findCommentsByBookId(Long bookId) {
+//
+//        List<Comment> comments = commentRepository.findCommentsByBookId(bookId);
+//        return comments.stream()
+//                .map((comment) -> CommentMapper.mapToCommentDto(comment))
+//                .collect(Collectors.toList());
+//    }
+
     @Override
     public List<CommentDto> findCommentsByBookId(Long bookId) {
-
         List<Comment> comments = commentRepository.findCommentsByBookId(bookId);
         return comments.stream()
-                .map((comment) -> CommentMapper.mapToCommentDto(comment))
+                .map((comment) -> {
+                    CommentDto commentDto = CommentMapper.mapToCommentDto(comment);
+                    // Dodaj dodatkowe pole do CommentDto
+                    commentDto.setAddedby(comment.getCreatedBy().getId());
+                    return commentDto;
+                })
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public CommentDto findCommentById(Long commentId) {

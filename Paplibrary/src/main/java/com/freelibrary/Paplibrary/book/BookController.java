@@ -67,16 +67,31 @@ public class BookController {
     //info o książce
     @GetMapping("/{bookId}")
     public String showBookById(@PathVariable("bookId") Long bookId, Model model,Authentication authentication) {
+        BookDto bookDto = bookService.findBookById(bookId);
+
 
         if (authentication != null && authentication.isAuthenticated()) {
             String email = authentication.getName();
-            User currentUser = userRepository.findByEmail(email);
+            User currentUserUser = userRepository.findByEmail(email);
+            Long currentUser= currentUserUser.getId();
             model.addAttribute("currentUser", currentUser);
+            Long bookOwner = bookService.getUserOwner(bookDto);
+
+            // Jeśli użytkownik jest właścicielem książki, przekaż go do szablonu
+            if ( bookService.getUserOwner(bookDto) !=0 && currentUserUser.getId().equals(bookOwner) ){
+                model.addAttribute("bookOwner", true);
+            }
         } else {
             model.addAttribute("currentUser", null);
         }
 
-        BookDto bookDto = bookService.findBookById(bookId);
+
+
+
+
+
+
+
         List<CommentDto> comments = commentService.findCommentsByBookId(bookId);
         model.addAttribute("bookDto", bookDto);
         model.addAttribute("comments", comments);
