@@ -45,6 +45,23 @@ public class CommentController {
         commentService.createComment(bookId, commentDto);
         return "redirect:/book/" + bookId;
     }
+
+
+    @PostMapping("/book/{bookId}/comment/edit")
+    public String editComment(@PathVariable("bookId") Long bookId,
+                              @ModelAttribute("comment") CommentDto commentDto) {
+        commentService.modifyComment(commentDto, bookId);
+        return "redirect:/book/" + bookId;
+    }
+
+    @GetMapping("/book/{bookId}/comment/delete/{commentId}")
+    public String deleteComment(@PathVariable("bookId") Long bookId,
+                                @PathVariable("commentId") Long commentId) {
+        commentService.deleteComment(commentId);
+        return "redirect:/book/" + bookId;
+    }
+
+
     @GetMapping("/{bookId}/comments")
     public List<CommentDto> getCommentsByBookId(@PathVariable Long bookId) {
         return commentService.findCommentsByBookId(bookId);

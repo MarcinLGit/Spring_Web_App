@@ -1,15 +1,15 @@
 package com.freelibrary.Paplibrary.comment;
 
+import com.freelibrary.Paplibrary.book.*;
 import com.freelibrary.Paplibrary.comment.CommentDto;
 import com.freelibrary.Paplibrary.comment.Comment;
-import com.freelibrary.Paplibrary.book.Book;
 import com.freelibrary.Paplibrary.user.User;
 import com.freelibrary.Paplibrary.comment.CommentMapper;
 import com.freelibrary.Paplibrary.comment.CommentRepository;
-import com.freelibrary.Paplibrary.book.BookRepository;
 import com.freelibrary.Paplibrary.user.UserRepository;
 import com.freelibrary.Paplibrary.comment.CommentService;
 import com.freelibrary.Paplibrary.util.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,6 +22,9 @@ public class CommentServiceImpl implements CommentService {
     private CommentRepository commentRepository;
     private BookRepository bookRepository;
     private UserRepository userRepository;
+    @Autowired
+    private BookService bookService;
+
 
     public CommentServiceImpl(CommentRepository commentRepository,
                               BookRepository bookRepository,
@@ -43,7 +46,7 @@ public class CommentServiceImpl implements CommentService {
         comment.setCreatedBy(user);
         comment.setEmail(email);
         comment.setCreatedOn(currentDateTime);
-        comment.setName("Temp name suka");
+        comment.setName(user.getLogin());
         commentRepository.save(comment);
     }
 
@@ -55,7 +58,7 @@ public class CommentServiceImpl implements CommentService {
                 .collect(Collectors.toList());
     }
 
-    //tutaj raczej listAll to this book?
+
 
     @Override
     public void deleteComment(Long commentId) {
@@ -63,8 +66,20 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void modifyComment(Long commentId) {
+    public void modifyComment(CommentDto commentDto,Long bookId) {
 
+
+            String email = SecurityUtils.getCurrentUser().getUsername();
+            User createdBy = userRepository.findByEmail(email);
+            CommentDto  commentDto1 = findCommentById(commentDto.getId());
+            commentDto1.setContent(commentDto.getContent());
+            commentDto1.setUpdatedOn(LocalDateTime.now());
+            Comment comment = CommentMapper.mapToComment(commentDto1);
+            comment.setCreatedBy(createdBy);
+            BookDto bookDto = bookService.findBookById(bookId);
+            Book book = BookMapper.mapToBook(bookDto);
+            comment.setBook(book);
+            commentRepository.save(comment);
 
     }
 
@@ -91,19 +106,14 @@ public class CommentServiceImpl implements CommentService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public CommentDto findCommentById(Long commentId) {
 
-//    public void modifyComment(Long commentId, ModifyCommentRequest request) {
-//        // Pobierz komentarz na podstawie jego identyfikatora
-//        Optional<Comment> optionalComment = commentRepository.findById(commentId);
-//        if (optionalComment.isPresent()) {
-//            Comment comment = optionalComment.get();
-//            // Dokonaj modyfikacji komentarza na podstawie danych z żądania
-//            comment.setContent(request.getContent());
-//            // Zapisz zmodyfikowany komentarz w bazie danych
-//            commentRepository.save(comment);
-//        } else {
-//            // Obsłuż przypadek, gdy komentarz o podanym identyfikatorze nie został znaleziony
-//            throw new CommentNotFoundException("Comment with id " + commentId + " not found");
-//        }
-//    }
+            Comment comment = commentRepository.findById(commentId).get();
+            return CommentMapper.mapToCommentDto(comment);
+
+    }
+
+
+
 }

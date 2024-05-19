@@ -168,9 +168,16 @@ public class BookController {
 
     @GetMapping("/lox")
     public String lox() {
-        return "/user/lox";
+        return "/book/aaa";
     }
 
+    @GetMapping("/{bookId}/comment/edit/{commentId}")
+    public String editCommentForm(@PathVariable("bookId") Long bookId, @PathVariable("commentId") Long commentId, Model model) {
+        CommentDto comment = commentService.findCommentById(commentId);
+        model.addAttribute("bookId", bookId);
+        model.addAttribute("comment", comment);
+        return "book/editCommentPage";
+    }
 
 
 }
