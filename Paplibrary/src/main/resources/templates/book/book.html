@@ -83,6 +83,34 @@
 <p><strong>Language:</strong> <span th:text="${bookDto.language}"></span></p>
 
 
+<p><strong>Star Rating:</strong> <span th:text="${averageRating}"></span></p>
+
+
+
+
+<div class="card">
+    <div class="card-header">
+        <h2>Leave a Rating</h2>
+    </div>
+    <div class="card-body">
+        <form method="post" th:action="@{/book/{bookId}/rate(bookId=${bookDto.bookId})}">
+            <div class="form-group">
+                <label for="rating">Rating:</label>
+                <select id="rating" name="rating" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+
 
 
 <div th:if="${currentUser != null}">

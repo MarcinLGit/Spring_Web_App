@@ -4,6 +4,7 @@ import com.freelibrary.Paplibrary.comment.Comment;
 import com.freelibrary.Paplibrary.comment.CommentDto;
 import com.freelibrary.Paplibrary.comment.CommentRepository;
 import com.freelibrary.Paplibrary.comment.CommentService;
+import com.freelibrary.Paplibrary.rating.RatingService;
 import com.freelibrary.Paplibrary.user.User;
 import com.freelibrary.Paplibrary.user.UserRepository;
 import com.freelibrary.Paplibrary.util.SecurityUtils;
@@ -47,6 +48,8 @@ public class BookController {
     private BookRepository bookRepository;
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private RatingService ratingService;
 
 
     @Autowired
@@ -68,6 +71,8 @@ public class BookController {
     @GetMapping("/{bookId}")
     public String showBookById(@PathVariable("bookId") Long bookId, Model model,Authentication authentication) {
         BookDto bookDto = bookService.findBookById(bookId);
+        double averageRating = ratingService.getAverageRatingForBook(BookMapper.mapToBook(bookService.findBookById(bookId)));
+        model.addAttribute("averageRating", averageRating);
 
 
         if (authentication != null && authentication.isAuthenticated()) {
