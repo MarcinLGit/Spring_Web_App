@@ -2,7 +2,11 @@ package com.freelibrary.Paplibrary.book;
 
 import com.freelibrary.Paplibrary.comment.Comment;
 import com.freelibrary.Paplibrary.comment.CommentDto;
+import com.freelibrary.Paplibrary.comment.CommentRepository;
 import com.freelibrary.Paplibrary.comment.CommentService;
+import com.freelibrary.Paplibrary.user.User;
+import com.freelibrary.Paplibrary.user.UserRepository;
+import com.freelibrary.Paplibrary.util.SecurityUtils;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -37,6 +41,13 @@ public class BookController {
     private BookServiceImpl bookServiceImpl;
     @Autowired
     private BookService bookService;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private BookRepository bookRepository;
+    @Autowired
+    private CommentRepository commentRepository;
+
 
     @Autowired
     private CommentService commentService;
@@ -53,8 +64,18 @@ public class BookController {
         return "book/home_page";
     }
 
-        @GetMapping("/{bookId}")
-    public String showBookById(@PathVariable("bookId") Long bookId, Model model) {
+    //info o książce
+    @GetMapping("/{bookId}")
+    public String showBookById(@PathVariable("bookId") Long bookId, Model model,Authentication authentication) {
+
+        if (authentication != null && authentication.isAuthenticated()) {
+            String email = authentication.getName();
+            User currentUser = userRepository.findByEmail(email);
+            model.addAttribute("currentUser", currentUser);
+        } else {
+            model.addAttribute("currentUser", null);
+        }
+
         BookDto bookDto = bookService.findBookById(bookId);
         List<CommentDto> comments = commentService.findCommentsByBookId(bookId);
         model.addAttribute("bookDto", bookDto);
@@ -62,20 +83,7 @@ public class BookController {
         return "book/book";
     }
 
-    // z chatu dla weryfikacji  czy trzeba pokazywać przycisk delete i td
-    /*
-    @GetMapping("/book/{id}")
-    public String viewBook(@PathVariable Long id, Model model, Authentication authentication) {
-        Book book = bookService.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
-        model.addAttribute("book", book);
 
-        String email = authentication.getName();
-        User currentUser = userRepository.findByEmail(email);
-        model.addAttribute("currentUser", currentUser);
-
-        return "book/view";
-    }
-    */
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/newbook")
@@ -84,6 +92,8 @@ public class BookController {
         model.addAttribute("bookDto", bookDto);
         return "book/new_form";
     }
+
+
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/savebook")
@@ -124,6 +134,19 @@ public class BookController {
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/edit/{bookId}")
     public String showEditForm(@PathVariable("bookId") Long bookId, Model model) {
+
+
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByEmail(email);
+
+
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(() -> new IllegalArgumentException("Book not found: " + bookId));
+
+
+        if (!user.getId().equals(book.getAddedBy().getId())) {
+            throw new SecurityException("You are not authorized to edit this book");
+        }
         BookDto bookDto = bookService.findBookById(bookId);
         model.addAttribute("bookDto", bookDto);
         return "book/edit_form";
@@ -160,24 +183,6 @@ public class BookController {
 
 
 
-    @GetMapping("/addcomment")
-    public String addcomment() {
-        return "/book/book_comment";
-    }
-
-
-    @GetMapping("/lox")
-    public String lox() {
-        return "/book/aaa";
-    }
-
-    @GetMapping("/{bookId}/comment/edit/{commentId}")
-    public String editCommentForm(@PathVariable("bookId") Long bookId, @PathVariable("commentId") Long commentId, Model model) {
-        CommentDto comment = commentService.findCommentById(commentId);
-        model.addAttribute("bookId", bookId);
-        model.addAttribute("comment", comment);
-        return "book/editCommentPage";
-    }
 
 
 }

@@ -5,21 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Details</title>
 
-    <script>
-        function editComment(commentId) {
-            var displayDiv = document.getElementById('display-comment-' + commentId);
-            var editDiv = document.getElementById('edit-comment-' + commentId);
-            displayDiv.style.display = 'none';
-            editDiv.style.display = 'block';
-        }
 
-        function cancelEdit(commentId) {
-            var displayDiv = document.getElementById('display-comment-' + commentId);
-            var editDiv = document.getElementById('edit-comment-' + commentId);
-            displayDiv.style.display = 'block';
-            editDiv.style.display = 'none';
-        }
-    </script>
 
 </head>
 <body>
@@ -35,7 +21,8 @@
 
 
 
-    <div>
+<div th:if="${currentUser != null}">
+
         <a th:href="@{/book/edit/{bookId}(bookId=${bookDto.bookId})}">
             <button>Edit</button>
         </a>
@@ -47,6 +34,7 @@
         </a>
     </div>
 
+
 <div class="card">
     <div class="card-header">
         <h2>Leave a comment</h2>
@@ -55,7 +43,7 @@
         <form
                 role="form"
                 method="post"
-                th:action="@{/{bookId}/comments(bookId=${bookId})}"
+                th:action="@{/{bookId}/addcomment(bookId=${bookId})}"
                 th:object="${comment}"
         >
 
@@ -94,12 +82,15 @@
     <ul>
         <li th:each="comment : ${comments}">
             <p><strong>Comment:</strong> <span th:text="${comment.content}"></span></p>
+            <div th:if="${currentUser != null}">
+                
             <a th:href="@{/book/{bookId}/comment/edit/{commentId}(bookId=${bookDto.bookId}, commentId=${comment.id})}">
                 <button>Edit Comment</button>
             </a>
             <a th:href="@{/book/{bookId}/comment/delete/{commentId}(bookId=${bookDto.bookId}, commentId=${comment.id})}">
                 <button>Delete Comment</button>
             </a>
+            </div>
         </li>
     </ul>
 </div>

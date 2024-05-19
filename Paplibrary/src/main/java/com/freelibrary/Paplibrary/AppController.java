@@ -8,10 +8,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebSecurity
 public class AppController implements WebMvcConfigurer{
  public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/user").setViewName("user/index");
+        registry.addViewController("/user/").setViewName("user/home_page");
         registry.addViewController("/").setViewName("home_page");
-       // registry.addViewController("/").setViewName("user/index");
-         registry.addViewController("/book").setViewName("book/home_page");
+        registry.addViewController("/book").setViewName("book/home_page");
         registry.addViewController("/admin").setViewName("admin/main_admin");
     }
 }

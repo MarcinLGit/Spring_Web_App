@@ -62,27 +62,47 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void deleteComment(Long commentId) {
+
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User user = userRepository.findByEmail(email);
+
+        Comment comment = commentRepository.findById(commentId).get();
+
+        if(user.getId() != comment.getCreatedBy().getId()) {
+            throw new SecurityException("You are not authorized to delete this book");
+        }
+
         commentRepository.deleteById(commentId);
     }
 
+
+
+    // to działa ale trzeba żeby kod był czysty poprawić to
     @Override
     public void modifyComment(CommentDto commentDto,Long bookId) {
 
 
-            String email = SecurityUtils.getCurrentUser().getUsername();
-            User createdBy = userRepository.findByEmail(email);
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User user = userRepository.findByEmail(email);
+
+
+        Long comment_id = commentDto.getId();
+        Comment comment1 = commentRepository.findById(comment_id).get();
+
+        if(user.getId() != comment1.getCreatedBy().getId()) {
+            throw new SecurityException("You are not authorized to delete this book");
+        }
             CommentDto  commentDto1 = findCommentById(commentDto.getId());
             commentDto1.setContent(commentDto.getContent());
             commentDto1.setUpdatedOn(LocalDateTime.now());
             Comment comment = CommentMapper.mapToComment(commentDto1);
-            comment.setCreatedBy(createdBy);
+            comment.setCreatedBy(user);
             BookDto bookDto = bookService.findBookById(bookId);
             Book book = BookMapper.mapToBook(bookDto);
             comment.setBook(book);
             commentRepository.save(comment);
 
     }
-
 
 
     @Override
@@ -96,7 +116,7 @@ public class CommentServiceImpl implements CommentService {
                 .collect(Collectors.toList());
     }
 
-
+    //sprawdzić czy to nie jest to samo bo wygląda podobnie
     @Override
     public List<CommentDto> findCommentsByBookId(Long bookId) {
 
@@ -111,7 +131,6 @@ public class CommentServiceImpl implements CommentService {
 
             Comment comment = commentRepository.findById(commentId).get();
             return CommentMapper.mapToCommentDto(comment);
-
     }
 
 
