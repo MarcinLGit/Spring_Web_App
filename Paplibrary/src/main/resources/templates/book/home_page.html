@@ -7,10 +7,11 @@
   <form action="/book/search" method="get">
     <input type="text" name="title" placeholder="Title">
     <input type="text" name="author" placeholder="Author">
-    <input type="text" name="publicationYear" placeholder="Publication Year">
-    <input type="text" name="genre" placeholder="Genre">
-    <input type="text" name="starRating" placeholder="Star Rating">
-    <input type="text" name="language" placeholder="Language">
+    <input type="text" id="publicationYear" name="publicationYear" placeholder="year" list="years"><br>
+    <datalist id="years"></datalist>
+    <input type="text" name="genre" placeholder="Genre" list = "genreList">
+    <input type="text" name="starRating" placeholder="Star Rating" list ="starList">
+    <input type="text" name="language" placeholder="Language" list = "languageList">
     <button type="submit">Search</button>
   </form>
   <style>
@@ -91,6 +92,76 @@
 
 
 </div>
+
+
+
+
+<script>
+  const datalist = document.getElementById('years');
+  const startYear = 1960;
+  const endYear = 2024;
+
+  for (let year = startYear; year <= endYear; year++) {
+    const option = document.createElement('option');
+    option.value = year;
+    datalist.appendChild(option);
+  }
+</script>
+
+<datalist id="starList">
+  <option value="0">0</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+
+</datalist>
+
+<datalist id="genreList">
+
+  <option value="Powieść">Powieść</option>
+  <option value="Literatura klasyczna">Literatura klasyczna</option>
+  <option value="Literatura popularnonaukowa">Literatura popularnonaukowa</option>
+  <option value="Literatura faktu">Literatura faktu</option>
+  <option value="Fantastyka">Fantastyka</option>
+  <option value="Science fiction">Science fiction</option>
+  <option value="Kryminał">Kryminał</option>
+  <option value="Sensacja">Sensacja</option>
+  <option value="Romans">Romans</option>
+  <option value="Thriller">Thriller</option>
+  <option value="Horror">Horror</option>
+  <option value="Przygodowa">Przygodowa</option>
+  <option value="Fantasy">Fantasy</option>
+  <option value="Historyczna">Historyczna</option>
+  <option value="Biografia">Biografia</option>
+  <option value="Autobiografia">Autobiografia</option>
+  <option value="Literatura dziecięca">Literatura dziecięca</option>
+  <option value="Literatura młodzieżowa">Literatura młodzieżowa</option>
+  <option value="Poezja">Poezja</option>
+  <option value="Dramat">Dramat</option>
+
+</datalist>
+
+
+
+<datalist id="languageList">
+  <option value="Angielski">Angielski</option>
+  <option value="Francuski">Francuski</option>
+  <option value="Hiszpański">Hiszpański</option>
+  <option value="Niemiecki">Niemiecki</option>
+  <option value="Rosyjski">Rosyjski</option>
+  <option value="Chiński">Chiński</option>
+  <option value="Japoński">Japoński</option>
+  <option value="Włoski">Włoski</option>
+  <option value="Portugalski">Portugalski</option>
+  <option value="Arabski">Arabski</option>
+  <option value="Holenderski">Holenderski</option>
+  <option value="Polski">Polski</option>
+  <option value="Koreański">Koreański</option>
+  <option value="Słowacki">Słowacki</option>
+  <option value="Szwedzki">Szwedzki</option>
+</datalist>
 
 
 </body>
