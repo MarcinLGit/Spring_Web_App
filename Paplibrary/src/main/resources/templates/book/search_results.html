@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 
 <style>
@@ -60,45 +60,31 @@
 <body>
 <div class="navbar">
     <a th:href="@{/}" >Home</a>
-    <a th:href="@{/book/}" >Go to Library</a>
     <a th:href="@{/logout}" >Wyloguj się</a>
     <a th:href="@{/login}" >Zaloguj sie</a>
     <a th:href="@{/user/}" >Profil</a>
 </div>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Book</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Details</title>
+
+
+
 </head>
-
-<h2>Edit Book</h2>
-<form action="#" th:action="@{/book/update/{bookId}(bookId=${bookDto.bookId})}" th:object="${bookDto}" method="post">
-    <input type="hidden" th:field="*{bookId}" />
-    <label>Title:</label>
-    <input type="text" th:field="*{title}" /><br/>
-
-    <label>Author:</label>
-    <input type="text" th:field="*{author}" /><br/>
-
-    <label>Publication Year:</label>
-    <input type="text" th:field="*{publicationYear}" /><br/>
-
-    <label>Genre:</label>
-    <input type="text" th:field="*{genre}" /><br/>
-
-    <label>Description:</label>
-    <textarea th:field="*{description}"></textarea><br/>
+<h1>Search Results</h1>
 
 
 
-    <label>Star Rating:</label>
-    <input type="text" th:field="*{starRating}" /><br/>
-
-    <label>Language:</label>
-    <input type="text" th:field="*{language}" /><br/>
 
 
-    <input type="submit" value="Save Changes" />
-</form>
+
+<div th:each="book : ${books}" class="book">
+    <a th:href="@{'/book/' + ${book.bookId}}">
+        <p th:text="${book.title}"></p>
+    </a>
+
+
+
 </body>
 </html>
