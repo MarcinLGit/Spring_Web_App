@@ -43,7 +43,7 @@ public class WebSpringSecurity {
                 .and()
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/user") //TODO
+                        .defaultSuccessUrl("/user/") //TODO
                         .loginProcessingUrl("/login")
                         .permitAll()
                 ).logout(
