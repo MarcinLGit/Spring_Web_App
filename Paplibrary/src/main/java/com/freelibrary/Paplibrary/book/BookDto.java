@@ -28,6 +28,7 @@ public class BookDto {
     @NotEmpty
     private String description;
 
+    private String email;
 
     private String starRating;
 

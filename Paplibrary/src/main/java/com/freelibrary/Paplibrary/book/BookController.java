@@ -90,13 +90,6 @@ public class BookController {
             model.addAttribute("currentUser", null);
         }
 
-
-
-
-
-
-
-
         List<CommentDto> comments = commentService.findCommentsByBookId(bookId);
         model.addAttribute("bookDto", bookDto);
         model.addAttribute("comments", comments);
@@ -123,6 +116,8 @@ public class BookController {
         String hash = calculateFileHash(file);
         bookDto.setHash(hash);
         bookDto.setStarRating("0");
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        bookDto.setEmail(email);
         if(result.hasErrors()){
             model.addAttribute("book", bookDto);
             System.out.println("Error occurred");

@@ -77,14 +77,13 @@ public class BookServiceImpl implements BookService {
     }
 
 
-
     @Override
     public BookDto findBookById(Long bookId) {
         Book book = bookRepository.findById(bookId).get();
         System.out.println(book);
         return BookMapper.mapToBookDto(book);
     }
-////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////
     @Override
     public Long getUserOwner(BookDto bookDto) {
         Long userOwner= bookRepository.findById(bookDto.getBookId()).get().getAddedBy().getId();
@@ -104,7 +103,7 @@ public class BookServiceImpl implements BookService {
                         && (author == null || book.getAuthor().contains(author))
                         && (publicationYear == null || book.getPublicationYear().contains(publicationYear))
                         && (genre == null || book.getGenre().contains(genre))
-                        && (starRating == null || starRating.isEmpty() || Integer.parseInt(book.getStarRating()) >= Integer.parseInt(starRating))
+                        && (starRating == null || starRating.isEmpty() || Double.parseDouble(book.getStarRating()) >= Double.parseDouble(starRating))
                         && (language == null || book.getLanguage().contains(language)))
                 .collect(Collectors.toList());
 
@@ -130,5 +129,4 @@ public class BookServiceImpl implements BookService {
 
 
 }
-
 

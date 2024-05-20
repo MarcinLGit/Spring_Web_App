@@ -58,6 +58,7 @@ public class CommentController {
     }
 
 
+
     //modyfikacja komentarza wsunąć do comments bo nie działało i dodać w takim razie /book/ na początku
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/book/{bookId}/comment/edit/{commentId}")

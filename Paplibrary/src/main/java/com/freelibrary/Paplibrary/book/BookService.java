@@ -25,6 +25,7 @@ public interface BookService {
     BookDto findBookById(Long BookId);
     Long getUserOwner(BookDto bookDto);
 
+
     BookDto findBookByHash(String bookHash);
     List<BookDto> searchBooks(String title, String author, String publicationYear,
                               String genre, String starRating, String language);

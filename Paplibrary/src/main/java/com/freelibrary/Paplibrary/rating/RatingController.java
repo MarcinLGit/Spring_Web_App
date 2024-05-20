@@ -1,16 +1,17 @@
 package com.freelibrary.Paplibrary.rating;
 
 
-import com.freelibrary.Paplibrary.book.Book;
-import com.freelibrary.Paplibrary.book.BookMapper;
-import com.freelibrary.Paplibrary.book.BookService;
+import com.freelibrary.Paplibrary.book.*;
 import com.freelibrary.Paplibrary.user.User;
+import com.freelibrary.Paplibrary.user.UserRepository;
 import com.freelibrary.Paplibrary.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
+@Controller
 @RequestMapping("/book")
 public class RatingController {
 
@@ -22,36 +23,41 @@ public class RatingController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private BookRepository bookRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-//    @PostMapping("/{bookId}/rate")
-//    public Rating addRating(@PathVariable Long bookId, @RequestParam int ratingValue, Authentication authentication) {
-//        String email = authentication.getName();
-//        User user = userService.findByEmail(email);
-//        Book book = BookMapper.mapToBook(bookService.findBookById(bookId));
-//        return ratingService.addRating(user, book, ratingValue);
-//    }
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("/{bookId}/rate")
-    public Rating addRating(@PathVariable Long bookId, @RequestParam int rating, Authentication authentication) {
+    public String addRating(@PathVariable Long bookId, @RequestParam int rating, Authentication authentication) {
         String email = authentication.getName();
         User user = userService.findByEmail(email);
         if (user == null) {
             throw new IllegalArgumentException("User not found");
         }
-        Book book = BookMapper.mapToBook(bookService.findBookById(bookId));
+        BookDto bookDto = bookService.findBookById(bookId);
+        Book book = BookMapper.mapToBook(bookDto);
+
+        String email1 =bookDto.getEmail();
+        User user1 = userRepository.findByEmail(email1);
+
+
         if (book == null) {
             throw new IllegalArgumentException("Book not found");
         }
-        return ratingService.addRating(user, book, rating);
+
+        book.setAddedBy(user1);
+
+        ratingService.addRating(user, book, rating);
+        book.setStarRating(String.valueOf(ratingService.getAverageRatingForBook(book)));
+        bookRepository.save(book);
+
+        return "redirect:/book/" + bookId;
     }
 
-//    @GetMapping("/{bookId}/averageRating")
-//    public double getAverageRating(@PathVariable Long bookId) {
-//        Book book = BookMapper.mapToBook(bookService.findBookById(bookId));
-//        return ratingService.getAverageRatingForBook(book);
-//    }
-
-
+    @PreAuthorize("isAuthenticated()")
     @GetMapping("/{bookId}/averageRating")
     public double getAverageRating(@PathVariable Long bookId) {
         Book book = BookMapper.mapToBook(bookService.findBookById(bookId));

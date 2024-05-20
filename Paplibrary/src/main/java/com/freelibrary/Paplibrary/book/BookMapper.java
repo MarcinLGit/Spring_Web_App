@@ -13,6 +13,7 @@ public class BookMapper {
                 .description(book.getDescription())
                 .starRating(book.getStarRating())
                 .language(book.getLanguage())
+                .email((book.getEmail()))
                 .hash((book.getHash()))
                 .build();
     }
@@ -28,6 +29,7 @@ public class BookMapper {
                 .description(bookDto.getDescription())
                 .starRating(bookDto.getStarRating())
                 .language(bookDto.getLanguage())
+                .email((bookDto.getEmail()))
                 .hash(bookDto.getHash())
                 .build();
     }
