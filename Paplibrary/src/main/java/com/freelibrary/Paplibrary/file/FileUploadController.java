@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.stream.Collectors;
 
 import com.freelibrary.Paplibrary.book.BookDto;
+import com.freelibrary.Paplibrary.book.BookRepository;
+import com.freelibrary.Paplibrary.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +24,12 @@ import com.freelibrary.Paplibrary.file.storage.StorageService;
 @RequestMapping("/file")
 public class FileUploadController {
 
+
+	@Autowired
+	private BookService bookService;
+
+	@Autowired
+	private BookRepository bookRepository;
 
 	private final StorageService storageService;
 
@@ -51,11 +59,20 @@ public class FileUploadController {
 		if (file == null)
 			return ResponseEntity.notFound().build();
 
+
+		int dotIndex = file.getFilename().lastIndexOf('.');
+
+		String extension = file.getFilename().substring(dotIndex);
 		// Pobranie tytułu książki z obiektu BookDto
-		//String title = bookDto.getTitle();
+		BookDto bookDto = bookService.findBookByHash(filename);
+		String title = bookDto.getTitle();
+		String author = bookDto.getAuthor();
+		System.out.println(extension);
+		String newFileName = title+"_"+author+extension;
+
 
 		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
+				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + newFileName + "\"")
 				.body(file);
 	}
 
