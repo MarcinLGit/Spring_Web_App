@@ -61,8 +61,17 @@ public class BookController {
     }
 
     @GetMapping("/")
-    public String viewBooks(Model model){
+    public String viewBooks(Model model,Authentication authentication){
         List<BookDto> booksResponse = bookService.getAllBooks();
+        if (authentication != null) {
+            String email = authentication.getName();
+            User currentUserUser = userRepository.findByEmail(email);
+            Long currentUser = currentUserUser.getId();
+            model.addAttribute("currentUser", currentUser);
+        } else {
+            model.addAttribute("currentUser", null); // or handle the unauthenticated case differently
+        }
+
         model.addAttribute("booksResponse", booksResponse);
         return "book/home_page";
     }
@@ -182,6 +191,7 @@ public class BookController {
         return "redirect:/book/"+bookId;
     }
 
+
     @GetMapping("/search")
     public String searchBooks(@RequestParam(required = false) String title,
                               @RequestParam(required = false) String author,
@@ -189,9 +199,19 @@ public class BookController {
                               @RequestParam(required = false) String genre,
                               @RequestParam(required = false) String starRating,
                               @RequestParam(required = false) String language,
-                              Model model) {
+                              Model model,
+                              Authentication authentication) {
         List<BookDto> books = bookService.searchBooks(title, author, publicationYear, genre, starRating, language);
+        if (authentication != null) {
+            String email = authentication.getName();
+            User currentUserUser = userRepository.findByEmail(email);
+            Long currentUser = currentUserUser.getId();
+            model.addAttribute("currentUser", currentUser);
+        } else {
+            model.addAttribute("currentUser", null); // or handle the unauthenticated case differently
+        }
         model.addAttribute("books", books);
+
         return "/book/search_results";
 
     }

@@ -1,5 +1,10 @@
 package com.freelibrary.Paplibrary.book;
 
+import com.freelibrary.Paplibrary.comment.Comment;
+import com.freelibrary.Paplibrary.comment.CommentRepository;
+import com.freelibrary.Paplibrary.comment.CommentService;
+import com.freelibrary.Paplibrary.rating.Rating;
+import com.freelibrary.Paplibrary.rating.RatingRepository;
 import com.freelibrary.Paplibrary.user.User;
 import com.freelibrary.Paplibrary.user.UserRepository;
 import com.freelibrary.Paplibrary.util.SecurityUtils;
@@ -25,6 +30,11 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
+    @Autowired
+    private RatingRepository ratingRepository;
 
     @Override
     public List<BookDto> getAllBooks() {
@@ -72,6 +82,14 @@ public class BookServiceImpl implements BookService {
 
         if(user.getId() != book.getAddedBy().getId()) {
             throw new SecurityException("You are not authorized to delete this book");
+        }
+        List<Comment> comments= commentRepository.findCommentsByBookId(nr_book);
+        List<Rating> ratings = ratingRepository.findByBook(bookRepository.findById(nr_book).get());
+        for(Comment comment : comments) {
+            commentRepository.delete(comment);
+        }
+        for(Rating rating : ratings) {
+            ratingRepository.delete(rating);
         }
         bookRepository.deleteById(nr_book);
     }

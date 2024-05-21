@@ -24,7 +24,7 @@
     .navbar {
       background-color: #333;
       overflow: hidden;
-      text-align: right;
+      text-align: center;
     }
     .navbar a {
       display: inline-block;
@@ -72,10 +72,16 @@
 <body>
 <div class="navbar">
   <a th:href="@{/}" >Home</a>
-  <a th:href="@{/logout}" >Wyloguj się</a>
-  <a th:href="@{/login}" >Zaloguj sie</a>
+  <div th:if="${currentUser != null}">
+    <a th:href="@{/logout}" >Wyloguj się</a>
+  </div>
+  <div th:if="${currentUser == null}">
+    <a th:href="@{/login}" >Zaloguj sie</a>
+  </div>
+  <a th:href="@{/book/}" >Do Biblioteki</a>
   <a th:href="@{/user/}" >Profil</a>
 </div>
+
 
 <div class="container">
   <h1>Witaj na stronie e-księgarni!</h1>
@@ -106,6 +112,7 @@
     option.value = year;
     datalist.appendChild(option);
   }
+
 </script>
 
 <datalist id="starList">

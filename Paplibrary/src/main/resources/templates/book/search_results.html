@@ -60,8 +60,13 @@
 <body>
 <div class="navbar">
     <a th:href="@{/}" >Home</a>
-    <a th:href="@{/logout}" >Wyloguj się</a>
-    <a th:href="@{/login}" >Zaloguj sie</a>
+    <div th:if="${currentUser != null}">
+        <a th:href="@{/logout}" >Wyloguj się</a>
+    </div>
+    <div th:if="${currentUser == null}">
+        <a th:href="@{/login}" >Zaloguj sie</a>
+    </div>
+    <a th:href="@{/book/}" >Do Biblioteki</a>
     <a th:href="@{/user/}" >Profil</a>
 </div>
 

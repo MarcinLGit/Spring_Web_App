@@ -8,7 +8,6 @@ public interface CommentService {
     void createComment(Long bookId, CommentDto commentDto);
 
     List<CommentDto> findAllComments();
-
     void deleteComment(Long commentId);
     void modifyComment(CommentDto commentDto,Long bookId);
     List<CommentDto> findCommentsByBook();
