@@ -72,9 +72,9 @@
     <a th:href="@{/book/}" >Do Biblioteki</a>
     <a th:href="@{/user/}" >Profil</a>
 </div>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Details</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Details</title>
 
 
 
@@ -95,26 +95,28 @@
 
 
 <div th:if="${currentUser != null}">
-<div class="card">
-    <div class="card-header">
-        <h2>Leave a Rating</h2>
-    </div>
-    <div class="card-body">
-        <form method="post" th:action="@{/book/{bookId}/rate(bookId=${bookDto.bookId})}">
-            <div class="form-group">
-                <label for="rating">Rating:</label>
-                <select id="rating" name="rating" required>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+    <div th:if="${!ratingAdded}">
+    <div class="card">
+        <div class="card-header">
+            <h2>Leave a Rating</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" th:action="@{/book/{bookId}/rate(bookId=${bookDto.bookId})}">
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <select id="rating" name="rating" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </form>
             </div>
-            <button class="btn btn-primary" type="submit">Submit</button>
-        </form>
+        </div>
     </div>
-</div>
 </div>
 
 
@@ -193,28 +195,16 @@
                 <div th:if="${currentUser == comment.getAddedby()}">
 
 
-            <a th:href="@{/book/{bookId}/comment/edit/{commentId}(bookId=${bookDto.bookId}, commentId=${comment.id})}">
-                <button>Edit Comment</button>
-            </a>
-            <a th:href="@{/book/{bookId}/comment/delete/{commentId}(bookId=${bookDto.bookId}, commentId=${comment.id})}">
-                <button>Delete Comment</button>
-            </a>
-            </div>
+                    <a th:href="@{/book/{bookId}/comment/edit/{commentId}(bookId=${bookDto.bookId}, commentId=${comment.id})}">
+                        <button>Edit Comment</button>
+                    </a>
+                    <a th:href="@{/book/{bookId}/comment/delete/{commentId}(bookId=${bookDto.bookId}, commentId=${comment.id})}">
+                        <button>Delete Comment</button>
+                    </a>
+                </div>
         </li>
     </ul>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

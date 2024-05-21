@@ -6,8 +6,6 @@ import com.freelibrary.Paplibrary.book.Book;
 import com.freelibrary.Paplibrary.book.BookRepository;
 import com.freelibrary.Paplibrary.book.BookService;
 import com.freelibrary.Paplibrary.comment.Comment;
-import com.freelibrary.Paplibrary.comment.CommentDto;
-import com.freelibrary.Paplibrary.comment.CommentMapper;
 import com.freelibrary.Paplibrary.comment.CommentRepository;
 import com.freelibrary.Paplibrary.user.User;
 import com.freelibrary.Paplibrary.user.UserRepository;
@@ -17,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class RatingServiceImpl implements RatingService {
@@ -46,6 +43,12 @@ public class RatingServiceImpl implements RatingService {
     @Override
     public List<Rating> getRatingsForBook(Book book) {
         return ratingRepository.findByBook(book);
+    }
+
+    @Override
+    public List<Rating> findRatingsByBookId(Long bookId) {
+        List<Rating> ratings = ratingRepository.findRatingsByBookId(bookId);
+        return ratings;
     }
 
     @Override

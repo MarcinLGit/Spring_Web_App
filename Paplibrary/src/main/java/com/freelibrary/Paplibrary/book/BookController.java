@@ -4,6 +4,8 @@ import com.freelibrary.Paplibrary.comment.Comment;
 import com.freelibrary.Paplibrary.comment.CommentDto;
 import com.freelibrary.Paplibrary.comment.CommentRepository;
 import com.freelibrary.Paplibrary.comment.CommentService;
+import com.freelibrary.Paplibrary.rating.Rating;
+import com.freelibrary.Paplibrary.rating.RatingRepository;
 import com.freelibrary.Paplibrary.rating.RatingService;
 import com.freelibrary.Paplibrary.user.User;
 import com.freelibrary.Paplibrary.user.UserRepository;
@@ -47,6 +49,8 @@ public class BookController {
     @Autowired
     private BookRepository bookRepository;
     @Autowired
+    private RatingRepository ratingRepository;
+    @Autowired
     private CommentRepository commentRepository;
     @Autowired
     private RatingService ratingService;
@@ -84,6 +88,7 @@ public class BookController {
         model.addAttribute("averageRating", averageRating);
 
 
+
         if (authentication != null && authentication.isAuthenticated()) {
             String email = authentication.getName();
             User currentUserUser = userRepository.findByEmail(email);
@@ -95,11 +100,21 @@ public class BookController {
             if ( bookService.getUserOwner(bookDto) !=0 && currentUserUser.getId().equals(bookOwner) ){
                 model.addAttribute("bookOwner", true);
             }
+
+            List<Rating>  ratings = ratingService.findRatingsByBookId(bookId);
+            model.addAttribute("ratingAdded",false);
+            for(Rating rating:ratings){
+                if(rating.getUser().getId() == currentUser){
+                    model.addAttribute("ratingAdded",true );
+                }
+            }
+
         } else {
             model.addAttribute("currentUser", null);
         }
 
         List<CommentDto> comments = commentService.findCommentsByBookId(bookId);
+
         model.addAttribute("bookDto", bookDto);
         model.addAttribute("comments", comments);
         return "book/book";

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamiczne dodawanie formularza</title>
+    <!-- Dodaj linki do arkuszy stylów CSS i innych zależności, jeśli to konieczne -->
+</head>
+<body>
+<!-- Navbar lub inna sekcja nagłówka -->
+<nav>
+    <!-- Tutaj umieść kod dla nawigacji, jeśli to konieczne -->
+</nav>
+
+<!-- Kontener dla zawartości strony -->
+<div class="container">
+    <h1>Moja Strona</h1>
+    <!-- Inna zawartość strony -->
+
+    <!-- Przycisk do wyświetlenia formularza -->
+    <button id="showFormButton">Edytuj komentarz</button>
+
+    <!-- Kontener dla formularza (początkowo ukryty) -->
+    <div id="commentFormContainer" style="display: none;">
+        <!-- Formularz edycji komentarza -->
+        <h2>Edit Comment</h2>
+        <form
+                id="commentForm"
+                role="form"
+                method="post"
+                th:action="@{/book/{bookId}/comment/edit(bookId=${bookId})}"
+                th:object="${comment}"
+        >
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="row">
+                <div class="col-md-9 mb-3">
+                    <div class="form-group">
+                        <textarea class="form-control" id="content" name="content" rows="5" th:text="${comment.content}" required></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-5">
+                    <button class="btn btn-primary" type="submit">Update</button>
+                </div>
+            </div>
+        </form>
+        <!-- Koniec formularza edycji komentarza -->
+    </div>
+    <!-- Koniec kontenera dla formularza -->
+
+    <!-- Inna zawartość strony -->
+</div>
+<!-- Koniec kontenera dla zawartości strony -->
+
+<!-- Skrypty JavaScript -->
+<script>
+    // Pobierz przycisk i kontener formularza
+    const showFormButton = document.getElementById('showFormButton');
+    const commentFormContainer = document.getElementById('commentFormContainer');
+
+    // Dodaj obsługę zdarzenia dla kliknięcia przycisku
+    showFormButton.addEventListener('click', function() {
+        // Wyświetl kontener formularza
+        commentFormContainer.style.display = 'block';
+    });
+</script>
+</body>
+</html>

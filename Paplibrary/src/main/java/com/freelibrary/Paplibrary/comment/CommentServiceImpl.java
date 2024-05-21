@@ -116,15 +116,7 @@ public class CommentServiceImpl implements CommentService {
                 .collect(Collectors.toList());
     }
 
-    //sprawdzić czy to nie jest to samo bo wygląda podobnie
-//    @Override
-//    public List<CommentDto> findCommentsByBookId(Long bookId) {
-//
-//        List<Comment> comments = commentRepository.findCommentsByBookId(bookId);
-//        return comments.stream()
-//                .map((comment) -> CommentMapper.mapToCommentDto(comment))
-//                .collect(Collectors.toList());
-//    }
+
 
     @Override
     public List<CommentDto> findCommentsByBookId(Long bookId) {

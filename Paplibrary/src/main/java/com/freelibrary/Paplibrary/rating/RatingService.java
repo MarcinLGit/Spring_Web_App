@@ -10,7 +10,10 @@ import java.util.List;
 @Service
 public interface RatingService {
     Rating addRating(User user, Book book, int ratingValue);
-    List<Rating> getRatingsForBook(Book book);
+     List<Rating> getRatingsForBook(Book book);
+
+    List<Rating> findRatingsByBookId(Long bookId);
+
     double getAverageRatingForBook(Book book);
 
 
