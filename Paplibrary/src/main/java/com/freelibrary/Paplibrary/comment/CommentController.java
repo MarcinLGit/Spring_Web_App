@@ -66,7 +66,6 @@ public class CommentController {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByEmail(email);
 
-
         Comment comment1 = commentRepository.findById(commentId)
                 .orElseThrow(() -> new IllegalArgumentException("Comment not found: " + commentId));
 
@@ -86,9 +85,6 @@ public class CommentController {
     @PostMapping("/book/{bookId}/comment/edit")
     public String editComment(@PathVariable("bookId") Long bookId,
                               @ModelAttribute("comment") CommentDto commentDto) {
-
-
-
 
         commentService.modifyComment(commentDto, bookId);
         return "redirect:/book/" + bookId;

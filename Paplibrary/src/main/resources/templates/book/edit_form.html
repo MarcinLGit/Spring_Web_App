@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <style>
     body {
         font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
         margin: 0;
         padding: 0;
-        background-color: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .navbar {
         background-color: #333;
         overflow: hidden;
         text-align: right;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 999;
     }
     .navbar a {
         display: inline-block;
@@ -26,34 +32,40 @@
         color: black;
     }
     .container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 20px;
         text-align: center;
+        margin-top: 60px; /* To give space for the fixed navbar */
     }
-    .search-input {
+    form {
+        display: inline-block;
+        text-align: left;
+        width: 300px;
+        margin-top: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+        margin-bottom: 5px;
+        display: block;
+    }
+    input[type="text"],
+    select,
+    textarea {
+        margin-bottom: 15px;
+        padding: 8px;
         width: 100%;
-        max-width: 400px;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+    textarea {
+        resize: none;
+    }
+    input[type="submit"] {
         padding: 10px;
         font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        box-sizing: border-box;
-        margin-bottom: 20px;
-    }
-    .book {
-        display: inline-block;
-        margin: 10px;
-        text-align: center;
         cursor: pointer;
-    }
-    .book img {
-        width: 150px;
-        height: 200px;
-        border-radius: 5px;
-    }
-    .book p {
-        margin: 5px;
+        width: 100%;
     }
 </style>
 </head>
