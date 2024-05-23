@@ -1,43 +1,178 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="utf-8" />
-  <title>New BOOK</title>
+<html lang="en">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .navbar {
+        background-color: #333;
+        overflow: hidden;
+        text-align: right;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        z-index: 999;
+    }
+    .navbar a {
+        display: inline-block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 20px;
+        text-decoration: none;
+    }
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    .container {
+        text-align: center;
+        margin-top: 60px; /* To give space for the fixed navbar */
+    }
+    form {
+        display: inline-block;
+        text-align: left;
+        width: 300px;
+        margin-top: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+        margin-bottom: 5px;
+        display: block;
+    }
+    input[type="text"],
+    select,
+    textarea,
+    input[type="file"] {
+        margin-bottom: 15px;
+        padding: 8px;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 14px;
+    }
+    textarea {
+        resize: none;
+    }
+    input[type="submit"] {
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        width: 100%;
+    }
+</style>
 </head>
 <body>
-<div align="center">
-  <h1>Enter New Book</h1>
-  <br />
-  <form action="#" th:action="@{/book/save}" th:object="${book}"
-        method="post">
+<div class="navbar">
+    <a th:href="@{/}" >Home</a>
+    <div th:if="${currentUser != null}" style="display: inline-block;">
+        <a th:href="@{/logout}" >Wyloguj się</a>
+    </div>
+    <div th:if="${currentUser == null}" style="display: inline-block;">
+        <a th:href="@{/login}" >Zaloguj sie</a>
+    </div>
+    <a th:href="@{/book/}" >Do Biblioteki</a>
+    <a th:href="@{/user/}" >Profil</a>
+</div>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add New Book</title>
+</head>
+<div class="container">
+    <h1>Add New Book</h1>
+    <form action="/book/savebook" method="post" enctype="multipart/form-data">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
 
-    <table border="0" cellpadding="10">
-      <tr>
-        <td>Book:</td>
-        <td><input type="text" th:field="*{nr_book}" /></td>
-      </tr>
-      <tr>
-        <td>Book:</td>
-        <td><input type="text" th:field="*{book}" /></td>
-      </tr>
-      <tr>
-        <td>Book:</td>
-        <td><input type="text" th:field="*{book}" /></td>
-      </tr>
-      <tr>
-        <td>Book::</td>
-        <td><input type="text" th:field="*{book}" /></td>
-      </tr>
-      <tr>
-        <td>Book:</td>
-        <td><input type="text" th:field="*{book}" /></td>
-      </tr>
+        <label for="author">Author:</label><br>
+        <input type="text" id="author" name="author"><br>
 
-      <tr>
-        <td colspan="2"><button type="submit">Save</button> </td>
-      </tr>
-    </table>
-  </form>
+        <label for="publicationYear">Publication Year:</label><br>
+        <input type="text" id="publicationYear" name="publicationYear" list="years"><br>
+        <datalist id="years"></datalist>
+
+
+
+        <label for="genre">Genre:</label><br>
+        <select id="genre" name="genre">
+            <option value="Powieść">Powieść</option>
+            <option value="Literatura klasyczna">Literatura klasyczna</option>
+            <option value="Literatura popularnonaukowa">Literatura popularnonaukowa</option>
+            <option value="Literatura faktu">Literatura faktu</option>
+            <option value="Fantastyka">Fantastyka</option>
+            <option value="Science fiction">Science fiction</option>
+            <option value="Kryminał">Kryminał</option>
+            <option value="Sensacja">Sensacja</option>
+            <option value="Romans">Romans</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Horror">Horror</option>
+            <option value="Przygodowa">Przygodowa</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Historyczna">Historyczna</option>
+            <option value="Biografia">Biografia</option>
+            <option value="Autobiografia">Autobiografia</option>
+            <option value="Literatura dziecięca">Literatura dziecięca</option>
+            <option value="Literatura młodzieżowa">Literatura młodzieżowa</option>
+            <option value="Poezja">Poezja</option>
+            <option value="Dramat">Dramat</option>
+
+        </select>
+
+
+
+
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description"></textarea><br>
+
+        <label for="language">Language:</label><br>
+        <select id="language" name="language">
+            <option value="Angielski">Angielski</option>
+            <option value="Francuski">Francuski</option>
+            <option value="Hiszpański">Hiszpański</option>
+            <option value="Niemiecki">Niemiecki</option>
+            <option value="Rosyjski">Rosyjski</option>
+            <option value="Chiński">Chiński</option>
+            <option value="Japoński">Japoński</option>
+            <option value="Włoski">Włoski</option>
+            <option value="Portugalski">Portugalski</option>
+            <option value="Arabski">Arabski</option>
+            <option value="Holenderski">Holenderski</option>
+            <option value="Polski">Polski</option>
+            <option value="Koreański">Koreański</option>
+            <option value="Słowacki">Słowacki</option>
+            <option value="Szwedzki">Szwedzki</option>
+        </select>
+
+
+
+        <label for="file">File to upload:</label><br>
+        <input type="file" id="file" name="file"><br>
+
+        <input type="submit" value="Save">
+
+
+
+
+        <script>
+            const datalist = document.getElementById('years');
+            const startYear = 1960;
+            const endYear = 2024;
+
+            for (let year = startYear; year <= endYear; year++) {
+                const option = document.createElement('option');
+                option.value = year;
+                datalist.appendChild(option);
+            }
+        </script>
+
+    </form>
 </div>
 </body>
+</html>

@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 
-public class SecurityUtils {
+public class  SecurityUtils {
 
     public static User getCurrentUser(){
         Object principle = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

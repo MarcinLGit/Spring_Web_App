@@ -1,42 +1,39 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Edit book</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
 </head>
 <body>
-<div align="center">
-  <h1>Edit Book</h1>
-  <br />
-  <form action="#" th:action="@{/book/update}" th:object="${book}"
-        method="post">
+<h2>Edit Book</h2>
+<form action="#" th:action="@{/book/update/{bookId}(bookId=${bookDto.bookId})}" th:object="${bookDto}" method="post">
+    <input type="hidden" th:field="*{bookId}" />
+    <label>Title:</label>
+    <input type="text" th:field="*{title}" /><br/>
 
-    <table border="0" cellpadding="10">
-      <tr>
-        <td></td>
-        <td><input type="text" th:field="*{}" readonly="readonly" /></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><input type="text" th:field="*{}" /></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><input type="text" th:field="*{}" /></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><input type="text" th:field="*{}" /></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><input type="text" th:field="*{}" /></td>
-      </tr>
-      <tr>
-        <td colspan="2"><button type="submit">Save</button> </td>
-      </tr>
-    </table>
-  </form>
-</div>
+    <label>Author:</label>
+    <input type="text" th:field="*{author}" /><br/>
+
+    <label>Publication Year:</label>
+    <input type="text" th:field="*{publicationYear}" /><br/>
+
+    <label>Genre:</label>
+    <input type="text" th:field="*{genre}" /><br/>
+
+    <label>Description:</label>
+    <textarea th:field="*{description}"></textarea><br/>
+
+
+
+    <label>Star Rating:</label>
+    <input type="text" th:field="*{starRating}" /><br/>
+
+    <label>Language:</label>
+    <input type="text" th:field="*{language}" /><br/>
+
+
+    <input type="submit" value="Save Changes" />
+</form>
 </body>
+</html>

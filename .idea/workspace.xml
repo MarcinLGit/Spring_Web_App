@@ -4,10 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7fda1ae3-fa31-44f9-ae72-b8e3359cebab" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="7fda1ae3-fa31-44f9-ae72-b8e3359cebab" name="Changes" comment="Basic Admin">
+      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/admin/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/util/ROLE.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/admin_panel.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/book_comment.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/books.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/user.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/users_page.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/FileUploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/FileUploadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/PaplibraryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/PaplibraryApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/DataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/DataInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/util/SecurityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/util/SecurityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/edit_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/edit_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/main_admin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/new_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/new_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/upload-dir/809946f9d8f45c7f6cf56de3365e7a2acbdb21c1f1f87277b503a73662e4234f.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,34 +41,51 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;mlobacz&quot;,
+      &quot;fullname&quot;: &quot;mlobacz&quot;
+    }
+  }
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://gitlab-stud.elka.pw.edu.pl/tkurzela/PAP2024L-Z14.git&quot;,
+    &quot;second&quot;: &quot;fc76e7e6-9061-4485-948a-767c3157de74&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2fk7w8UDIy3ofGFXILVuweKHFQ6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.PaplibraryApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/!!! OLD-C!!/!!! OLD-D !!!/STUDJA/6 semestr/pap/git3/PAP2024L-Z14",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.PaplibraryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/!!! OLD-C!!/!!! OLD-D !!!/STUDJA/6 semestr/pap/git3/PAP2024L-Z14&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="PaplibraryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="springboot-blog-webapp" />
@@ -72,10 +113,16 @@
       <updated>1714333458136</updated>
       <workItem from="1714333459720" duration="37000" />
       <workItem from="1716327914205" duration="1449000" />
+      <workItem from="1716365924680" duration="4323000" />
+      <workItem from="1716476801896" duration="1951000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Basic Admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic Admin" />
   </component>
 </project>

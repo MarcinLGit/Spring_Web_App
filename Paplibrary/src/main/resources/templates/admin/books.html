@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona główna księgarni</title>
+    <form action="/book/search" method="get"  autocomplete="off">
+        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="author" placeholder="Author">
+        <input type="text" id="publicationYear" name="publicationYear" placeholder="year" list="years"><br>
+        <datalist id="years"></datalist>
+        <input type="text" name="genre" placeholder="Genre" list = "genreList">
+        <input type="text" name="starRating" placeholder="Star Rating" list ="starList">
+        <input type="text" name="language" placeholder="Language" list = "languageList">
+        <button type="submit">Search</button>
+    </form>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            text-align: right;
+        }
+
+        .navbar a {
+            display: inline-block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .search-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        .book {
+            display: inline-block;
+            margin: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .book img {
+            width: 150px;
+            height: 200px;
+            border-radius: 5px;
+        }
+        .book p {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a th:href="@{/}" >Home</a>
+    <div th:if="${currentUser != null}"style="display: inline-block;">
+        <a th:href="@{/logout}" >Wyloguj się</a>
+    </div>
+    <div th:if="${currentUser == null}"style="display: inline-block;">
+        <a th:href="@{/login}" >Zaloguj sie</a>
+    </div>
+    <a th:href="@{/book/}" >Do Biblioteki</a>
+    <a th:href="@{/user/}" >Profil</a>
+</div>
+
+
+<div class="container">
+    <h1>Witaj na stronie e-księgarni!</h1>
+    <input type="text" class="search-input" placeholder="Wyszukaj książkę">
+
+    <h2>Przykładowe książki</h2>
+
+    <div th:each="book : ${booksResponse}" class="book">
+        <a th:href="@{'/book/' + ${book.bookId}}">
+            <p th:text="${book.title}"></p>
+        </a>
+    </div>
+
+
+
+</div>
+
+
+
+
+<script>
+    const datalist = document.getElementById('years');
+    const startYear = 1960;
+    const endYear = 2024;
+
+    for (let year = startYear; year <= endYear; year++) {
+        const option = document.createElement('option');
+        option.value = year;
+        datalist.appendChild(option);
+    }
+
+</script>
+
+<datalist id="starList">
+    <option value="0">0</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+
+</datalist>
+
+<datalist id="genreList">
+
+    <option value="Powieść">Powieść</option>
+    <option value="Literatura klasyczna">Literatura klasyczna</option>
+    <option value="Literatura popularnonaukowa">Literatura popularnonaukowa</option>
+    <option value="Literatura faktu">Literatura faktu</option>
+    <option value="Fantastyka">Fantastyka</option>
+    <option value="Science fiction">Science fiction</option>
+    <option value="Kryminał">Kryminał</option>
+    <option value="Sensacja">Sensacja</option>
+    <option value="Romans">Romans</option>
+    <option value="Thriller">Thriller</option>
+    <option value="Horror">Horror</option>
+    <option value="Przygodowa">Przygodowa</option>
+    <option value="Fantasy">Fantasy</option>
+    <option value="Historyczna">Historyczna</option>
+    <option value="Biografia">Biografia</option>
+    <option value="Autobiografia">Autobiografia</option>
+    <option value="Literatura dziecięca">Literatura dziecięca</option>
+    <option value="Literatura młodzieżowa">Literatura młodzieżowa</option>
+    <option value="Poezja">Poezja</option>
+    <option value="Dramat">Dramat</option>
+
+</datalist>
+
+
+
+<datalist id="languageList">
+    <option value="Angielski">Angielski</option>
+    <option value="Francuski">Francuski</option>
+    <option value="Hiszpański">Hiszpański</option>
+    <option value="Niemiecki">Niemiecki</option>
+    <option value="Rosyjski">Rosyjski</option>
+    <option value="Chiński">Chiński</option>
+    <option value="Japoński">Japoński</option>
+    <option value="Włoski">Włoski</option>
+    <option value="Portugalski">Portugalski</option>
+    <option value="Arabski">Arabski</option>
+    <option value="Holenderski">Holenderski</option>
+    <option value="Polski">Polski</option>
+    <option value="Koreański">Koreański</option>
+    <option value="Słowacki">Słowacki</option>
+    <option value="Szwedzki">Szwedzki</option>
+</datalist>
+
+
+</body>
+</html>

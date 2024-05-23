@@ -20,11 +20,11 @@ public class DataInitializer {
     public void initData() {
         for (RoleType roleType : RoleType.values()) {
             // Sprawdź, czy rola już istnieje
-            Role existingRole = roleRepository.findByName(roleType.name());
+            Role existingRole = roleRepository.findByRoleName(roleType.name());
             if (existingRole == null) {
                 // Jeśli rola nie istnieje, dodaj ją
                 Role role = new Role();
-                role.setName(roleType.name());
+                role.setRoleName(roleType.name());
                 roleRepository.save(role);
             }
         }
