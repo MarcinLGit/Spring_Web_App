@@ -81,7 +81,7 @@ public class BookServiceImpl implements BookService {
         User user = userRepository.findByEmail(email);
         Book book = bookRepository.findById(nr_book).get();
 
-        if(user.getId() != book.getAddedBy().getId()) {
+        if(user.getId() != book.getAddedBy().getId() && !user.getRoles().contains("ROLE_ADMIN")) {
             throw new SecurityException("You are not authorized to delete this book");
         }
         List<Comment> comments= commentRepository.findCommentsByBookId(nr_book);
@@ -95,14 +95,14 @@ public class BookServiceImpl implements BookService {
         bookRepository.deleteById(nr_book);
     }
 
-
+    
     @Override
     public BookDto findBookById(Long bookId) {
         Book book = bookRepository.findById(bookId).get();
         System.out.println(book);
         return BookMapper.mapToBookDto(book);
     }
-    ////////////////////////////////////////////////////////////////////////////
+
     @Override
     public Long getUserOwner(BookDto bookDto) {
         Long userOwner= bookRepository.findById(bookDto.getBookId()).get().getAddedBy().getId();
@@ -129,13 +129,28 @@ public class BookServiceImpl implements BookService {
         return filteredBooks;
     }
 
+//    @Override
+//    public List<BookDto> searchBooks(String addedBy) {
+//        // Pobierz wszystkie książki
+//        List<BookDto> allBooks = getAllBooks();
+//
+//        // Wykonaj filtrowanie na podstawie wszystkich parametrów
+//        List<BookDto> filteredBooks = allBooks.stream()
+//                .filter(book -> (book.getAuthor().contains()))
+//                .collect(Collectors.toList());
+//
+//        return filteredBooks;
+//    }
+
+
+
     @Override
     public BookDto findBookByHash(String bookHash) {
         Book book = bookRepository.findByHash(bookHash).get();
         return BookMapper.mapToBookDto(book);
     }
 
-
+    @Override
     public List<BookDto> getBooksByUser() {
         String email = SecurityUtils.getCurrentUser().getUsername();
         User createdBy = userRepository.findByEmail(email);

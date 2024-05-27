@@ -47,12 +47,28 @@ public class AdminController {
         this.storageService = storageService;
     }
 
+
+    @RolesAllowed("ROLE_ADMIN")
+    @GetMapping("/admin")
+    public String viewAdminPanel(Model model){
+        return "admin/admin_panel";
+    }
+
+
     @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/admin/users")
     public String viewUsers(Model model){
         List<UserDto> usersResponse = userService.getAllUsers();
         model.addAttribute("usersResponse", usersResponse);
         return "/admin/users_page";
+    }
+
+    @RolesAllowed({"ROLE_ADMIN"})
+    @GetMapping("/admin/user/delete/{userId}")
+    public String deleteUserById(@PathVariable("userId") Long userId) {
+        System.out.println("test");
+        userService.deleteUserByID(userId);
+        return "redirect:/admin/users";
     }
 
     @RolesAllowed("ROLE_ADMIN")
@@ -64,6 +80,7 @@ public class AdminController {
         return "/admin/books";
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/admin/books/{bookId}")
     public String adminShowBookById(@PathVariable("bookId") Long bookId, Model model, Authentication authentication) {
         BookDto bookDto = bookService.findBookById(bookId);
@@ -98,7 +115,7 @@ public class AdminController {
         return "book/book";
     }
 
-
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/admin/books/newbook")
     public String adminShowNewForm(Model model) {
         BookDto bookDto = new BookDto();
@@ -106,6 +123,7 @@ public class AdminController {
         return "admin/new_form";
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/admin/books/newbook/{userId}")
     public String adminShowNewForm(@PathVariable("userId") Long userId, Model model) {
         BookDto bookDto = new BookDto();
@@ -113,7 +131,7 @@ public class AdminController {
         return "admin/new_form";
     }
 
-
+    @RolesAllowed("ROLE_ADMIN")
     @PostMapping("/admin/books/savebook/{userId}")
     public String adminCreateBook(@PathVariable("userId") Long userId, @Valid @ModelAttribute("book") BookDto bookDto,
                                   BindingResult result, Model model, @RequestParam("file") MultipartFile file){
@@ -137,6 +155,7 @@ public class AdminController {
         }
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @PostMapping("/admin/books/savebook")
     public String adminCreateBook(@Valid @ModelAttribute("book") BookDto bookDto,
                                   BindingResult result,
@@ -160,13 +179,14 @@ public class AdminController {
         }
     }
 
-    @PreAuthorize("isAuthenticated()")
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/admin/delete/{bookId}")
     public String adminDelete(@PathVariable("bookId") Long bookId) {
         bookService.deleteBook(bookId);
         return "redirect:/admin/book/";
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/admin/book/{bookId}/edit")
     public String adminEditForm(@PathVariable("bookId") Long bookId, Model model) {
         BookDto bookDto = bookService.findBookById(bookId);
@@ -174,6 +194,7 @@ public class AdminController {
         return "/admin/edit_form";
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @PostMapping("/admin/book/{bookId}/update")
     public String adminUpdateBook(@PathVariable("bookId") Long bookId,
                                   @Valid @ModelAttribute("book") BookDto book,
@@ -188,6 +209,7 @@ public class AdminController {
         return "redirect:/book/"+bookId;
     }
 
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/admin/book/search")
     public String adminSearchBooks(@RequestParam(required = false) String title,
                                    @RequestParam(required = false) String author,
@@ -202,6 +224,19 @@ public class AdminController {
 
     }
 
+  // @RolesAllowed("ROLE_ADMIN")
+  // @GetMapping("/admin/book/search")
+  // public String adminSearchBooksByAddedBy(@RequestParam(required = false) String addedBy,
+  //                                Model model) {
+  //     List<BookDto> books = bookService.searchBooks();
+  //     model.addAttribute("books", books);
+  //     return "/admin/search_results";
+
+  // }
+
+
+
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/admin/book/addcomment")
     public String adminAddcomment() {
         return "/admin/book_comment";

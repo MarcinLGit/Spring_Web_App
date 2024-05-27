@@ -131,6 +131,11 @@ public class CommentServiceImpl implements CommentService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<CommentDto> findCommentsByUserId(Long userId) {
+        return List.of();
+    }
+
 
     @Override
     public CommentDto findCommentById(Long commentId) {
@@ -138,7 +143,6 @@ public class CommentServiceImpl implements CommentService {
             Comment comment = commentRepository.findById(commentId).get();
             return CommentMapper.mapToCommentDto(comment);
     }
-
 
 
 }
