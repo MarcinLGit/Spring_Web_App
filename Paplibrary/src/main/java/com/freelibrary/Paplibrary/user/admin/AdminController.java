@@ -50,7 +50,7 @@ public class AdminController {
 
     @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/admin")
-    public String viewAdminPanel(Model model){
+    public String viewAdminPanel(){
         return "admin/admin_panel";
     }
 
@@ -81,12 +81,22 @@ public class AdminController {
     }
 
     @RolesAllowed("ROLE_ADMIN")
+    @GetMapping("/admin/user/{userId}/profile")
+    public String adminViewUserBooks(Model model, @PathVariable("userId") Long userId){
+
+        List<BookDto> booksResponse = bookService.getBooksByUser();
+        User currentUser = userService.findByUserId(userId);
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("booksResponse", booksResponse);
+        return "book/home_page";
+    }
+
+    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/admin/books/{bookId}")
     public String adminShowBookById(@PathVariable("bookId") Long bookId, Model model, Authentication authentication) {
         BookDto bookDto = bookService.findBookById(bookId);
         double averageRating = ratingService.getAverageRatingForBook(BookMapper.mapToBook(bookService.findBookById(bookId)));
         model.addAttribute("averageRating", averageRating);
-
 
         if (authentication != null && authentication.isAuthenticated()) {
             String email = authentication.getName();
@@ -94,7 +104,6 @@ public class AdminController {
             Long currentUser= currentUserUser.getId();
             model.addAttribute("currentUser", currentUser);
             Long bookOwner = bookService.getUserOwner(bookDto);
-
 
             List<Rating>  ratings = ratingService.findRatingsByBookId(bookId);
             model.addAttribute("ratingAdded",false);
@@ -112,7 +121,7 @@ public class AdminController {
 
         model.addAttribute("bookDto", bookDto);
         model.addAttribute("comments", comments);
-        return "book/book";
+        return "admin/book";
     }
 
     @RolesAllowed("ROLE_ADMIN")
@@ -128,6 +137,7 @@ public class AdminController {
     public String adminShowNewForm(@PathVariable("userId") Long userId, Model model) {
         BookDto bookDto = new BookDto();
         model.addAttribute("bookDto", bookDto);
+        model.addAttribute("userId", userId);
         return "admin/new_form";
     }
 
@@ -145,7 +155,7 @@ public class AdminController {
             return "book/new_form";
         }
         try {
-            bookService.saveBook(bookDto);
+            bookService.saveBook(bookDto, userId);
             storageService.store(file,hash);
             System.out.println("Book saved successfully");
             return "redirect:/book/";
@@ -224,6 +234,12 @@ public class AdminController {
 
     }
 
+    @RolesAllowed("ROLE_ADMIN")
+    @GetMapping("/admin/book/addcomment")
+    public String adminAddcomment() {
+        return "/admin/book_comment";
+    }
+
   // @RolesAllowed("ROLE_ADMIN")
   // @GetMapping("/admin/book/search")
   // public String adminSearchBooksByAddedBy(@RequestParam(required = false) String addedBy,
@@ -234,11 +250,4 @@ public class AdminController {
 
   // }
 
-
-
-    @RolesAllowed("ROLE_ADMIN")
-    @GetMapping("/admin/book/addcomment")
-    public String adminAddcomment() {
-        return "/admin/book_comment";
-    }
 }

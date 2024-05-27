@@ -3,6 +3,7 @@ package com.freelibrary.Paplibrary.comment;
 import com.freelibrary.Paplibrary.book.Book;
 import com.freelibrary.Paplibrary.user.User;
 import com.freelibrary.Paplibrary.user.UserRepository;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import com.freelibrary.Paplibrary.comment.CommentDto;
 import com.freelibrary.Paplibrary.book.BookDto;
@@ -79,6 +80,7 @@ public class CommentController {
         model.addAttribute("comment", comment);
         return "book/editCommentPage";
     }
+
 
     //  modyfikacja komentarza
     @PreAuthorize("isAuthenticated()")

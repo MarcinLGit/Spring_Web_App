@@ -68,6 +68,10 @@ public class UserServiceImpl implements UserService{
         return userRepository.findByEmail(email);
     }
 
+    @Override
+    public User findByUserId(Long userId){
+        return userRepository.findById(userId).get();
+    }
 
    // @PreAuthorize("hasRole('ROLE_USER')")
    // public void deleteAccount() {
@@ -86,13 +90,15 @@ public class UserServiceImpl implements UserService{
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
     @Override
     public void deleteUserByID(Long id) {
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User currentUser = userRepository.findByEmail(email);
+        User userToDelete = userRepository.findById(id).get();
+        if(currentUser.getId().equals(userToDelete.getId())) {
+            throw new SecurityException("You are not allowed to delete this user. You are trying to delete yours account");
+        }
 
-        User user = userRepository.findById(id).get();
         List<Book> userBooks = bookRepository.findBooksByUser(id);
-
         for(Book book : userBooks) {
-
-
             List<Comment> comments= commentRepository.findCommentsByBookId(book.getBookId());
             List<Rating> ratings = ratingRepository.findByBook(bookRepository.findById(book.getBookId()).get());
             for(Comment comment : comments) {
@@ -103,7 +109,7 @@ public class UserServiceImpl implements UserService{
             }
             bookRepository.deleteById(book.getBookId());
         }
-        user.getRoles().clear();
+        userToDelete.getRoles().clear();
         userRepository.deleteById(id);
     }
 }

@@ -53,6 +53,14 @@ public class BookServiceImpl implements BookService {
         bookRepository.save(book);
     }
 
+    @Override
+    public void saveBook(BookDto bookDto, Long userId) {
+        User user = userRepository.findById(userId).get();
+        Book book = BookMapper.mapToBook(bookDto);
+        book.setAddedBy(user);
+        bookRepository.save(book);
+    }
+
 
 
     @Override
@@ -156,6 +164,14 @@ public class BookServiceImpl implements BookService {
         User createdBy = userRepository.findByEmail(email);
         Long userId = createdBy.getId();
         List<Book> books = bookRepository.findBooksByUser(userId);
+        return books.stream()
+                .map(BookMapper::mapToBookDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<BookDto> getBooksByUserId(Long id) {
+        List<Book> books = bookRepository.findBooksByUser(id);
         return books.stream()
                 .map(BookMapper::mapToBookDto)
                 .collect(Collectors.toList());
