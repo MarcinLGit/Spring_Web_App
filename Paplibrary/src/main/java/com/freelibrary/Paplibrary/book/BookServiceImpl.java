@@ -9,6 +9,8 @@ import com.freelibrary.Paplibrary.user.User;
 import com.freelibrary.Paplibrary.user.UserRepository;
 import com.freelibrary.Paplibrary.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -71,8 +73,11 @@ public class BookServiceImpl implements BookService {
         Long nr_book = bookDto.getBookId();
         Book book = bookRepository.findById(nr_book).get();
 
-        if(user.getId() != book.getAddedBy().getId()) {
-            throw new SecurityException("You are not authorized to delete this book");
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(user.getId() != book.getAddedBy().getId() && auth != null
+                && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            throw new SecurityException("You are not authorized to modify this book");
         }
         Book book1 = BookMapper.mapToBook(bookDto);
         book1.setAddedBy(book.getAddedBy());
@@ -89,7 +94,9 @@ public class BookServiceImpl implements BookService {
         User user = userRepository.findByEmail(email);
         Book book = bookRepository.findById(nr_book).get();
 
-        if(user.getId() != book.getAddedBy().getId() && !user.getRoles().contains("ROLE_ADMIN")) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(user.getId() != book.getAddedBy().getId() && auth != null
+                && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
             throw new SecurityException("You are not authorized to delete this book");
         }
         List<Comment> comments= commentRepository.findCommentsByBookId(nr_book);

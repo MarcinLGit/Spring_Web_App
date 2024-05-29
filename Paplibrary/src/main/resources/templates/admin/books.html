@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl" xmlns:th="http://www.thymeleaf.org">
-<!DOCTYPE html>
-<html lang="pl" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="admin/header :: header"></div>
-<head>
+<head >
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Book</title>
@@ -43,7 +40,7 @@
         }
         form {
             display: inline-block;
-            margin-top: 20px;
+            margin-top: 50px;
             background-color: #fff;
             padding: 20px;
             border-radius: 8px;
@@ -58,42 +55,34 @@
     </style>
 </head>
 <body>
-
 <div class="navbar">
-    <a th:href="@{/}" >Home</a>
-    <a th:href="@{/book/}" >Go to Library</a>
-    <a th:href="@{/logout}" >Wyloguj się</a>
-    <a th:href="@{/login}" >Zaloguj sie</a>
-    <a th:href="@{/user/}" >Profil</a>
+    <div style="display: inline-block;">
+        <a th:href="@{/admin/}" >Panel admina</a>
+        <a th:href="@{/logout}" >Wyloguj się</a>
+    </div>
 </div>
-<div th:replace="admin/header :: navbar"></div>
-<br /><br /><br /><br /><br /><br />
-<form action="/book/search" method="get"  autocomplete="off">
-    <input type="text" name="title" placeholder="Title">
-    <input type="text" name="author" placeholder="Author">
-    <input type="text" id="publicationYear" name="publicationYear" placeholder="year" list="years"><br>
-    <datalist id="years"></datalist>
-    <input type="text" name="genre" placeholder="Genre" list = "genreList">
-    <input type="text" name="starRating" placeholder="Star Rating" list ="starList">
-    <input type="text" name="language" placeholder="Language" list = "languageList">
-    <button type="submit">Search</button>
-</form>
-
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div>
+    <form action="/admin/book/search" method="get"  autocomplete="off">
+        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="author" placeholder="Author">
+        <input type="text" id="publicationYear" name="publicationYear" placeholder="year" list="years"><br>
+        <datalist id="years"></datalist>
+        <input type="text" name="genre" placeholder="Genre" list = "genreList">
+        <input type="text" name="starRating" placeholder="Star Rating" list ="starList">
+        <input type="text" name="language" placeholder="Language" list = "languageList">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 <div class="container">
     <h1>Witaj na stronie e-księgarni!</h1>
     <input type="text" class="search-input" placeholder="Wyszukaj książkę">
-
-    <h2>Przykładowe książki</h2>
-
     <div th:each="book : ${booksResponse}" class="book">
         <a th:href="@{'/admin/books/' + ${book.bookId}}">
             <p th:text="${book.title}"></p>
         </a>
     </div>
-
-
-
 </div>
 
 

@@ -157,35 +157,12 @@ public class AdminController {
         }
     }
 
-    @RolesAllowed("ROLE_ADMIN")
-    @PostMapping("/admin/books/savebook")
-    public String adminCreateBook(@Valid @ModelAttribute("book") BookDto bookDto,
-                                  BindingResult result,
-                                  Model model, @RequestParam("file") MultipartFile file){
-        String hash = calculateFileHash(file);
-        bookDto.setHash(hash);
-        bookDto.setStarRating("0");
-        if(result.hasErrors()){
-            model.addAttribute("book", bookDto);
-            System.out.println("Error occurred");
-            return "book/new_form";
-        }
-        try {
-            bookService.saveBook(bookDto);
-            storageService.store(file,hash);
-            System.out.println("Book saved successfully");
-            return "redirect:/book/";
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "error";
-        }
-    }
-
+ //TODO
     @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/admin/delete/{bookId}")
     public String adminDelete(@PathVariable("bookId") Long bookId) {
         bookService.deleteBook(bookId);
-        return "redirect:/admin/book/";
+        return "redirect:/admin/books/";
     }
 
     @RolesAllowed("ROLE_ADMIN")
@@ -208,7 +185,7 @@ public class AdminController {
         }
         book.setBookId(bookId);
         bookService.updateBook(book);
-        return "redirect:/book/"+bookId;
+        return "redirect:/admin/books/"+bookId;
     }
 
     @RolesAllowed("ROLE_ADMIN")

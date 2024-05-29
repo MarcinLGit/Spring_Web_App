@@ -130,18 +130,17 @@
 
 
 <div th:if="${currentUser != null}">
-    <div th:if="${bookOwner == true}">
 
-        <a th:href="@{/book/edit/{bookId}(bookId=${bookDto.bookId})}">
-            <button>Edit</button>
-        </a>
-        <a th:href="@{/book/delete/{bookId}(bookId=${bookDto.bookId})}">
-            <button>Delete</button>
-        </a>
-        <a th:href="@{/file/files/{filename}(filename=${bookDto.hash})}">
-            <button>Download</button>
-        </a>
-    </div>
+    <a th:href="@{/admin/book/__${bookDto.bookId}__/edit}">
+        <button>Edit</button>
+    </a>
+    <a th:href="@{/admin/delete/__${bookDto.bookId}__}">
+        <button>Delete</button>
+    </a>
+    <a th:href="@{/file/files/{filename}(filename=${bookDto.hash})}">
+        <button>Download</button>
+    </a>
+
 </div>
 
 

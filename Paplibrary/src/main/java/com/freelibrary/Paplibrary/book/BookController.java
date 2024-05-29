@@ -14,6 +14,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -226,6 +229,13 @@ public class BookController {
             model.addAttribute("currentUser", null); // or handle the unauthenticated case differently
         }
         model.addAttribute("books", books);
+
+
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        boolean isUserAdmin = authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        if(isUserAdmin){
+            return "redirect:admin/book/search_results";
+        }
 
         return "/book/search_results";
 
