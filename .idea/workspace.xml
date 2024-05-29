@@ -4,34 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7fda1ae3-fa31-44f9-ae72-b8e3359cebab" name="Changes" comment="Basic Admin">
-      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/admin/AdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/util/ROLE.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/admin_panel.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/book_comment.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/books.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/delete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/user.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/users_page.html" afterDir="false" />
+    <list default="true" id="7fda1ae3-fa31-44f9-ae72-b8e3359cebab" name="Changes" comment=".">
+      <change afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/search_results.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/PaplibraryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/PaplibraryApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/CustomUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/DataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/DataInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/RoleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/util/SecurityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/util/SecurityUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/admin/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/admin/AdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/book.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/book.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/books.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/books.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/edit_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/edit_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/main_admin.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/new_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/new_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/upload-dir/809946f9d8f45c7f6cf56de3365e7a2acbdb21c1f1f87277b503a73662e4234f.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/users_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/users_page.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +21,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="ui" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitLabMergeRequestFiltersHistory">{
@@ -77,7 +64,7 @@
     &quot;Spring Boot.PaplibraryApplication.executor&quot;: &quot;Run&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/!!! OLD-C!!/!!! OLD-D !!!/STUDJA/6 semestr/pap/git3/PAP2024L-Z14&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Marcin/IdeaProjects/PAP2024L-Z14/Paplibrary/src/main/resources/templates/admin&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -86,6 +73,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Marcin\IdeaProjects\PAP2024L-Z14\Paplibrary\src\main\resources\templates\admin" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="PaplibraryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="springboot-blog-webapp" />
@@ -114,8 +106,72 @@
       <workItem from="1714333459720" duration="37000" />
       <workItem from="1716327914205" duration="1449000" />
       <workItem from="1716365924680" duration="4323000" />
-      <workItem from="1716476801896" duration="1951000" />
+      <workItem from="1716476801896" duration="4719000" />
+      <workItem from="1716641665665" duration="8107000" />
+      <workItem from="1716713416035" duration="3209000" />
+      <workItem from="1716739082264" duration="19297000" />
+      <workItem from="1716801626679" duration="16342000" />
+      <workItem from="1716879950036" duration="2349000" />
+      <workItem from="1716894558917" duration="3893000" />
+      <workItem from="1716968155205" duration="21795000" />
     </task>
+    <task id="LOCAL-00001" summary="Basic Admin">
+      <option name="closed" value="true" />
+      <created>1716478816978</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716478816978</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Basic Admin">
+      <option name="closed" value="true" />
+      <created>1716478909166</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716478909166</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added deletion of user and implemented cosmetic changes to Admin.">
+      <option name="closed" value="true" />
+      <created>1716769263311</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1716769263311</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Added some things">
+      <option name="closed" value="true" />
+      <created>1716831184052</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1716831184052</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Added some things">
+      <option name="closed" value="true" />
+      <created>1716831255470</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716831255470</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fixed adding a book for a user">
+      <option name="closed" value="true" />
+      <created>1716979370437</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1716979370437</updated>
+    </task>
+    <task id="LOCAL-00007" summary=".">
+      <option name="closed" value="true" />
+      <created>1716993093704</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1716993093704</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +179,21 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Basic Admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic Admin" />
+    <MESSAGE value="Added deletion of user and implemented cosmetic changes to Admin." />
+    <MESSAGE value="Added some things" />
+    <MESSAGE value="Fixed adding a book for a user" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookController.java</url>
+          <line>95</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
