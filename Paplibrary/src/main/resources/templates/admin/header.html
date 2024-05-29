@@ -9,11 +9,20 @@
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           rel="stylesheet">
+    <style>
+        .custom-navbar {
+            background-color: #333 !important;
+        }
+        .navbar a:hover {
+            background-color: #54626F;
+            color: black;
+        }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #333;" th:fragment="navbar">
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar" th:fragment="navbar">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Biblioteka Panel Admina</a>
+        <span class="navbar-brand" href="#">Biblioteka Panel Admina</span>
         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
