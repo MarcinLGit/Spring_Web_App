@@ -88,7 +88,7 @@ public class AdminController {
         User currentUser = userService.findByUserId(userId);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("booksResponse", booksResponse);
-        return "book/home_page";
+        return "admin/books";
     }
 
     @RolesAllowed("ROLE_ADMIN")
@@ -125,14 +125,6 @@ public class AdminController {
     }
 
     @RolesAllowed("ROLE_ADMIN")
-    @GetMapping("/admin/books/newbook")
-    public String adminShowNewForm(Model model) {
-        BookDto bookDto = new BookDto();
-        model.addAttribute("bookDto", bookDto);
-        return "admin/new_form";
-    }
-
-    @RolesAllowed("ROLE_ADMIN")
     @GetMapping("/admin/books/newbook/{userId}")
     public String adminShowNewForm(@PathVariable("userId") Long userId, Model model) {
         BookDto bookDto = new BookDto();
@@ -152,13 +144,13 @@ public class AdminController {
         if(result.hasErrors()){
             model.addAttribute("book", bookDto);
             System.out.println("Error occurred");
-            return "book/new_form";
+            return "/admin/books/newbook/"+userId;
         }
         try {
             bookService.saveBook(bookDto, userId);
             storageService.store(file,hash);
             System.out.println("Book saved successfully");
-            return "redirect:/book/";
+            return "redirect:/admin/user/" + userId +"/profile";
         } catch (Exception e) {
             e.printStackTrace();
             return "error";
