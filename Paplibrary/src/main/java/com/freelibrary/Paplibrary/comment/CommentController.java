@@ -11,6 +11,7 @@ import com.freelibrary.Paplibrary.comment.CommentService;
 import com.freelibrary.Paplibrary.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,10 +56,12 @@ public class CommentController {
         }
 
         commentService.createComment(bookId, commentDto);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if( auth != null && !auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))){
+            return "admin/book/" + bookId;
+        }
         return "redirect:/book/" + bookId;
     }
-
-
 
     //modyfikacja komentarza wsunąć do comments bo nie działało i dodać w takim razie /book/ na początku
     @PreAuthorize("isAuthenticated()")
@@ -70,17 +73,21 @@ public class CommentController {
         Comment comment1 = commentRepository.findById(commentId)
                 .orElseThrow(() -> new IllegalArgumentException("Comment not found: " + commentId));
 
-
-        if (!user.getId().equals(comment1.getCreatedBy().getId())) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!user.getId().equals(comment1.getCreatedBy().getId()) && auth != null
+                && !auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
             throw new SecurityException("You are not authorized to edit this comment");
         }
+
 
         CommentDto comment = commentService.findCommentById(commentId);
         model.addAttribute("bookId", bookId);
         model.addAttribute("comment", comment);
+        if( auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))){
+            return "admin/editCommentPage";
+        }
         return "book/editCommentPage";
     }
-
 
     //  modyfikacja komentarza
     @PreAuthorize("isAuthenticated()")
@@ -89,14 +96,23 @@ public class CommentController {
                               @ModelAttribute("comment") CommentDto commentDto) {
 
         commentService.modifyComment(commentDto, bookId);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if( auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))){
+            return "redirect:/admin/books/" + bookId;
+        }
         return "redirect:/book/" + bookId;
     }
+
     //usunięcie komentarza do książki
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/book/{bookId}/comment/delete/{commentId}")
     public String deleteComment(@PathVariable("bookId") Long bookId,
                                 @PathVariable("commentId") Long commentId) {
         commentService.deleteComment(commentId);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if( auth != null && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))){
+            return "redirect:/admin/books/" + bookId;
+        }
         return "redirect:/book/" + bookId;
     }
 

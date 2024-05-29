@@ -191,18 +191,13 @@
             <p><strong>Added By</strong> <span th:text="${comment.getEmail()}"></span></p>
             <p><strong>Time Added</strong> <span th:text="${comment.getCreatedOn()}"></span></p>
             <p><strong>Time Added</strong> <span th:text="${comment.getUpdatedOn()}"></span></p>
-
             <div th:if="${currentUser != null}">
-                <div th:if="${currentUser == comment.getAddedby()}">
-
-
-                    <a th:href="@{/book/{bookId}/comment/edit/{commentId}(bookId=${bookDto.bookId}, commentId=${comment.id})}">
-                        <button>Edit Comment</button>
-                    </a>
-                    <a th:href="@{/book/{bookId}/comment/delete/{commentId}(bookId=${bookDto.bookId}, commentId=${comment.id})}">
-                        <button>Delete Comment</button>
-                    </a>
-                </div>
+                <a th:href="@{/book/{bookId}/comment/edit/{commentId}(bookId=${bookDto.bookId}, commentId=${comment.id})}">
+                    <button>Edit Comment</button>
+                </a>
+                <a th:href="@{/book/{bookId}/comment/delete/{commentId}(bookId=${bookDto.bookId}, commentId=${comment.id})}">
+                    <button>Delete Comment</button>
+                </a>
             </div>
         </li>
     </ul>
