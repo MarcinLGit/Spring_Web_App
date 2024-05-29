@@ -84,7 +84,7 @@ public class AdminController {
     @GetMapping("/admin/user/{userId}/profile")
     public String adminViewUserBooks(Model model, @PathVariable("userId") Long userId){
 
-        List<BookDto> booksResponse = bookService.getBooksByUser();
+        List<BookDto> booksResponse = bookService.getBooksByUserId(userId);
         User currentUser = userService.findByUserId(userId);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("booksResponse", booksResponse);

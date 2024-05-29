@@ -25,7 +25,8 @@
                     <td th:text="${user.getLogin()}"></td>
                     <td th:text="${user.getEmail()}"></td>
                     <td th:text="${user.getRoles()}"></td>
-                    <td><a th:href="@{/admin/user/__${user.getId().toString()}__/profile/}">Profil</a></td>
+                    <td><a th:href="@{/admin/books/newbook/__${user.getId().toString()}__}">Dodaj ksiązke</a></td>
+                    <td><a th:href="@{/admin/user/__${user.getId().toString()}__/profile}">Profil</a></td>
                     <td><a th:href="@{/admin/user/delete/__${user.getId().toString()}__}">Usuń</a></td>
                 </tr>
             </tbody>

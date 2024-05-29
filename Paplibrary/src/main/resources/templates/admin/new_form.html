@@ -87,7 +87,7 @@
 </head>
 <div class="container">
     <h1>Add New Book</h1>
-    <form action="/admin/books/savebook/__${userId}__" method="post" enctype="multipart/form-data">
+    <form th:action="@{/admin/books/savebook/__${userId}__}" method="post" enctype="multipart/form-data">
         <label for="title">Title:</label><br>
         <input type="text" id="title" name="title"><br>
 
