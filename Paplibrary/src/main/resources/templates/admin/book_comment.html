@@ -30,12 +30,9 @@
     <div class="mt-5">
         <h2>Komentarze do książki</h2>
         <ul>
-            <!-- Pętla Thymeleaf do wyświetlenia komentarzy -->
             <li th:each="comment : ${comments}">
-                <!-- Wyświetlenie zawartości komentarza -->
                 <p><strong>Użytkownik:</strong> <span th:text="${comment.user}"></span></p>
                 <p><strong>Treść:</strong> <span th:text="${comment.content}"></span></p>
-                <!-- Dodaj więcej pól komentarza, jeśli są dostępne -->
             </li>
         </ul>
     </div>
@@ -47,15 +44,12 @@
 <script>
     $(document).ready(function() {
         $('#commentForm').submit(function(event) {
-            event.preventDefault(); // Zapobiega domyślnemu zachowaniu formularza
+            event.preventDefault();
 
-            // Pobiera wartość bookId z pola tekstowego
             var bookId = $('#bookId').val();
 
-            // Aktualizuje atrybut action formularza, dodając bookId do ścieżki
             $(this).attr('action', '/' + bookId + '/comments');
 
-            // Przesyła formularz
             this.submit();
         });
     });
