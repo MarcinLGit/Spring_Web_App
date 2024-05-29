@@ -76,7 +76,7 @@ public class BookServiceImpl implements BookService {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if(user.getId() != book.getAddedBy().getId() && auth != null
-                && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+                && !auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
             throw new SecurityException("You are not authorized to modify this book");
         }
         Book book1 = BookMapper.mapToBook(bookDto);
@@ -96,7 +96,7 @@ public class BookServiceImpl implements BookService {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if(user.getId() != book.getAddedBy().getId() && auth != null
-                && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+                && !auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
             throw new SecurityException("You are not authorized to delete this book");
         }
         List<Comment> comments= commentRepository.findCommentsByBookId(nr_book);
