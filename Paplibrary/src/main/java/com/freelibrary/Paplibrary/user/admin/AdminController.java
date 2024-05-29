@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -88,6 +89,7 @@ public class AdminController {
         User currentUser = userService.findByUserId(userId);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("booksResponse", booksResponse);
+        model.addAttribute("userId", userId);
         return "admin/books";
     }
 
@@ -98,12 +100,12 @@ public class AdminController {
         double averageRating = ratingService.getAverageRatingForBook(BookMapper.mapToBook(bookService.findBookById(bookId)));
         model.addAttribute("averageRating", averageRating);
 
+        String email = authentication.getName();
+        User currentUserUser = userRepository.findByEmail(email);
+        Long currentUser= currentUserUser.getId();
+        Long bookOwner = bookService.getUserOwner(bookDto);
         if (authentication != null && authentication.isAuthenticated()) {
-            String email = authentication.getName();
-            User currentUserUser = userRepository.findByEmail(email);
-            Long currentUser= currentUserUser.getId();
             model.addAttribute("currentUser", currentUser);
-            Long bookOwner = bookService.getUserOwner(bookDto);
 
             List<Rating>  ratings = ratingService.findRatingsByBookId(bookId);
             model.addAttribute("ratingAdded",false);
@@ -118,9 +120,13 @@ public class AdminController {
         }
 
         List<CommentDto> comments = commentService.findCommentsByBookId(bookId);
-
         model.addAttribute("bookDto", bookDto);
         model.addAttribute("comments", comments);
+        model.addAttribute("bookOwner", bookOwner);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(!bookOwner.equals(currentUser)){
+            return "admin/book_profile";
+        }
         return "admin/book";
     }
 
@@ -162,7 +168,14 @@ public class AdminController {
     @GetMapping("/admin/delete/{bookId}")
     public String adminDelete(@PathVariable("bookId") Long bookId) {
         bookService.deleteBook(bookId);
-        return "redirect:/admin/books/";
+        return "redirect:/admin/books";
+    }
+
+    @RolesAllowed("ROLE_ADMIN")
+    @GetMapping("/admin/delete/{bookId}/{userId}")
+    public String adminDeleteBookOfUser(@PathVariable("bookId") Long bookId, @PathVariable("userId") Long userId) {
+        bookService.deleteBook(bookId);
+        return "redirect:/admin/user/" + userId +"/profile";
     }
 
     @RolesAllowed("ROLE_ADMIN")
