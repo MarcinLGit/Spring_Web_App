@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -47,6 +49,8 @@ public class CommentController {
 
         BookDto bookDto = bookService.findBookById(bookId);
         if(result.hasErrors()){
+
+
             model.addAttribute("book", bookDto);
             model.addAttribute("comment", commentDto);
             // return "book/book_comment";
