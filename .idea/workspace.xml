@@ -5,9 +5,92 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7fda1ae3-fa31-44f9-ae72-b8e3359cebab" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/Language.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/Language.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/NewErrorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/NewErrorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/PaplibraryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/PaplibraryApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/BookServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/HashCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/book/HashCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/Comment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/CommentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/CommentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/CommentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/CommentMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/CommentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/comment/CommentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/config/WebSpringSecurity.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/config/WebSpringSecurity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/FileUploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/FileUploadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/storage/FileSystemStorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/storage/FileSystemStorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/storage/StorageException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/storage/StorageException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/storage/StorageFileNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/storage/StorageFileNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/storage/StorageProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/storage/StorageProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/storage/StorageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/file/storage/StorageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/rating/Rating.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/rating/Rating.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/rating/RatingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/rating/RatingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/rating/RatingRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/rating/RatingRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/rating/RatingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/rating/RatingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/rating/RatingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/rating/RatingServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/service/LoginLoggingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/service/LoginLoggingService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/DataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/DataInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/RegistrationDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/RegistrationDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/RoleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/RoleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/RoleType.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/RoleType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/user/admin/AdminController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/util/ROLE.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/util/SecurityUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/java/com/freelibrary/Paplibrary/util/SecurityUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/static/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/static/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/admin_panel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/book.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/book_comment.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/book_profile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/books.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/delete.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/editCommentPage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/edit_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/edit_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/header.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/main_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/main_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/new_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/new_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/search_results.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/user.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/admin/users_page.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/book.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/book.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/delete_this_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/delete_this_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/editCommentPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/editCommentPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/edit_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/edit_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/home_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/home_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/new_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/new_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/search_results.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/book/search_results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/error/403.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/error/403.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/error/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/error/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/error/500.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/error/500.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/error/504.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/error/504.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/error/other.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/error/other.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/home_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/home_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/login_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/login_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/uploadForm.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/uploadForm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/user/home_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/user/home_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/user/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/user/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/user/userpanel.html" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/main/resources/templates/user/userpanel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Paplibrary/src/test/java/com/freelibrary/Paplibrary/PaplibraryApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Paplibrary/src/test/java/com/freelibrary/Paplibrary/PaplibraryApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,29 +105,35 @@
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2fk7w8UDIy3ofGFXILVuweKHFQ6" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.PaplibraryApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/!!! OLD-C!!/!!! OLD-D !!!/STUDJA/6 semestr/pap/git3/PAP2024L-Z14",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.PaplibraryApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Error__branch&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/szymonstec/Documents/INFORMATYKA_WEITI/SEM3/PAP/PAP2024L-Z14&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="PaplibraryApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="springboot-blog-webapp" />
@@ -77,5 +166,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
