@@ -59,15 +59,10 @@
 </head>
 <body>
 <div class="navbar">
-    <a th:href="@{/}" >Home</a>
-    <div th:if="${currentUser != null}" style="display: inline-block;">
-        <a th:href="@{/logout}" >Wyloguj się</a>
-    </div>
-    <div th:if="${currentUser == null}" style="display: inline-block;">
-        <a th:href="@{/login}" >Zaloguj sie</a>
-    </div>
-    <a th:href="@{/book/}" >Panel admina</a>
-    <a th:href="@{/user/}" >Profil</a>
+    <a th:href="@{/admin}" >Panel Admina</a>
+    <a th:href="@{/admin/books}" >Zarządzanie Książkami</a>
+    <a th:href="@{/admin/users}" >Zarządzanie Użytkownikami</a>
+    <a th:href="@{/logout}" >Wyloguj się</a>
 </div>
 
 <meta charset="UTF-8">
