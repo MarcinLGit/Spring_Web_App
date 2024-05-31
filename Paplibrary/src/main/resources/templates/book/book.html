@@ -92,9 +92,11 @@
 <p><strong>Publication Year:</strong> <span th:text="${bookDto.publicationYear}"></span></p>
 <p><strong>Genre:</strong> <span th:text="${bookDto.genre}"></span></p>
 <p><strong>Description:</strong> <span th:text="${bookDto.description}"></span></p>
+<p><strong>Star Rating:</strong> <span th:text="${bookDto.starRating}"></span></p>
 <p><strong>Language:</strong> <span th:text="${bookDto.language}"></span></p>
-    <p><strong>Star Rating:</strong> <span th:text="${averageRating}"></span></p>
-    <p><strong>Liczba ocen:</strong> <span th:text="${ratingAmount}"></span></p>
+
+
+<p><strong>Star Rating:</strong> <span th:text="${averageRating}"></span></p>
 
 </div>
 
@@ -136,11 +138,12 @@
         <a th:href="@{/book/delete/{bookId}(bookId=${bookDto.bookId})}">
             <button>Delete</button>
         </a>
+        <a th:href="@{/file/files/{filename}(filename=${bookDto.hash})}">
+            <button>Download</button>
+        </a>
     </div>
 </div>
-<a th:href="@{/file/files/{filename}(filename=${bookDto.hash})}">
-    <button>Download</button>
-</a>
+
 
 <div class="card">
     <div class="card-header">
@@ -191,11 +194,8 @@
             <p><strong>Comment:</strong> <span th:text="${comment.content}"></span></p>
             <p><strong>Added By</strong> <span th:text="${comment.getName()}"></span></p>
             <p><strong>Added By</strong> <span th:text="${comment.getEmail()}"></span></p>
-            <p><strong>Test Added</strong> <span th:text="${comment.getCreatedOnFormat()}"></span></p>
-            <div th:if="${comment.getCreatedOnFormat()!=comment.getUpdatedOnFormat()}">
-            <p><strong>Test Modifyed</strong> <span th:text="${comment.getUpdatedOnFormat()}"></span></p>
-            </div>
-
+            <p><strong>Time Added</strong> <span th:text="${comment.getCreatedOn()}"></span></p>
+            <p><strong>Time Added</strong> <span th:text="${comment.getUpdatedOn()}"></span></p>
 
             <div th:if="${currentUser != null}">
                 <div th:if="${currentUser == comment.getAddedby()}">

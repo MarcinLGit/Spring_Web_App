@@ -26,8 +26,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -89,10 +87,6 @@ public class BookController {
     public String showBookById(@PathVariable("bookId") Long bookId, Model model,Authentication authentication) {
         BookDto bookDto = bookService.findBookById(bookId);
         double averageRating = ratingService.getAverageRatingForBook(BookMapper.mapToBook(bookService.findBookById(bookId)));
-        List<Rating>  ratinglist = ratingService.findRatingsByBookId(bookId);
-        int amountOfRatings = ratinglist.size();
-
-        model.addAttribute("ratingAmount", amountOfRatings);
         model.addAttribute("averageRating", averageRating);
 
 
@@ -122,15 +116,6 @@ public class BookController {
         }
 
         List<CommentDto> comments = commentService.findCommentsByBookId(bookId);
-        for(CommentDto commentDto:comments)
-        {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            String formattedDate = commentDto.getCreatedOn().format(formatter);
-            String formattedDate1 = commentDto.getUpdatedOn().format(formatter);
-            commentDto.setCreatedOnFormat(formattedDate);
-            commentDto.setUpdatedOnFormat(formattedDate1);
-
-        }
 
         model.addAttribute("bookDto", bookDto);
         model.addAttribute("comments", comments);
@@ -165,8 +150,8 @@ public class BookController {
             return "book/new_form";
         }
         try {
-            storageService.store(file,hash);
             bookService.saveBook(bookDto);
+            storageService.store(file,hash);
             System.out.println("Book saved successfully");
             return "redirect:/book/";
         } catch (Exception e) {
