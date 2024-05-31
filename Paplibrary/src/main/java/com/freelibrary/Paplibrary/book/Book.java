@@ -59,7 +59,7 @@ public class Book {
      @Column(name = "hash")
      private String hash ;
 
-     @ManyToOne(fetch = FetchType.LAZY)
+     @ManyToOne
      @JoinColumn(name = "added_by", nullable = true)
      private User addedBy;
 

@@ -5,16 +5,11 @@ import com.freelibrary.Paplibrary.book.*;
 import com.freelibrary.Paplibrary.user.User;
 import com.freelibrary.Paplibrary.user.UserRepository;
 import com.freelibrary.Paplibrary.user.UserService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Collection;
 
 @Controller
 @RequestMapping("/book")
@@ -58,12 +53,6 @@ public class RatingController {
         ratingService.addRating(user, book, rating);
         book.setStarRating(String.valueOf(ratingService.getAverageRatingForBook(book)));
         bookRepository.save(book);
-
-        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        boolean isUserAdmin = authorities.contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        if(isUserAdmin){
-            return "redirect:/admin/books/"+bookId;
-        }
 
         return "redirect:/book/" + bookId;
     }

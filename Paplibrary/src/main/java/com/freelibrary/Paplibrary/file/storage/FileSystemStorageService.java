@@ -48,10 +48,13 @@ public class FileSystemStorageService implements StorageService {
         String fullFilename = filename + "." + extension;
 
 
+
+
         try {
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file.");
             }
+
             Path destinationFile = this.rootLocation.resolve(
                             fullFilename)
                     .normalize().toAbsolutePath();
@@ -59,6 +62,10 @@ public class FileSystemStorageService implements StorageService {
                 // This is a security check
                 throw new StorageException(
                         "Cannot store file outside current directory.");
+            }
+
+            if (Files.exists(destinationFile)) {
+                throw new StorageException("File already exists: " + fullFilename);
             }
             try (InputStream inputStream = file.getInputStream()) {
                 Files.copy(inputStream, destinationFile,

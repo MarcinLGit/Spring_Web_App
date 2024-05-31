@@ -9,8 +9,6 @@ import com.freelibrary.Paplibrary.user.User;
 import com.freelibrary.Paplibrary.user.UserRepository;
 import com.freelibrary.Paplibrary.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -55,15 +53,6 @@ public class BookServiceImpl implements BookService {
         bookRepository.save(book);
     }
 
-    @Override
-    public void saveBook(BookDto bookDto, Long userId) {
-        User user = userRepository.findById(userId).get();
-        Book book = BookMapper.mapToBook(bookDto);
-        book.setAddedBy(user);
-        bookRepository.save(book);
-    }
-
-
 
     @Override
     public void updateBook(BookDto bookDto) {
@@ -73,11 +62,8 @@ public class BookServiceImpl implements BookService {
         Long nr_book = bookDto.getBookId();
         Book book = bookRepository.findById(nr_book).get();
 
-
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(user.getId() != book.getAddedBy().getId() && auth != null
-                && !auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
-            throw new SecurityException("You are not authorized to modify this book");
+        if(user.getId() != book.getAddedBy().getId()) {
+            throw new SecurityException("You are not authorized to delete this book");
         }
         Book book1 = BookMapper.mapToBook(bookDto);
         book1.setAddedBy(book.getAddedBy());
@@ -94,9 +80,7 @@ public class BookServiceImpl implements BookService {
         User user = userRepository.findByEmail(email);
         Book book = bookRepository.findById(nr_book).get();
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if(user.getId() != book.getAddedBy().getId() && auth != null
-                && !auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+        if(user.getId() != book.getAddedBy().getId()) {
             throw new SecurityException("You are not authorized to delete this book");
         }
         List<Comment> comments= commentRepository.findCommentsByBookId(nr_book);
@@ -110,14 +94,14 @@ public class BookServiceImpl implements BookService {
         bookRepository.deleteById(nr_book);
     }
 
-    
+
     @Override
     public BookDto findBookById(Long bookId) {
         Book book = bookRepository.findById(bookId).get();
         System.out.println(book);
         return BookMapper.mapToBookDto(book);
     }
-
+    ////////////////////////////////////////////////////////////////////////////
     @Override
     public Long getUserOwner(BookDto bookDto) {
         Long userOwner= bookRepository.findById(bookDto.getBookId()).get().getAddedBy().getId();
@@ -144,28 +128,13 @@ public class BookServiceImpl implements BookService {
         return filteredBooks;
     }
 
-//    @Override
-//    public List<BookDto> searchBooks(String addedBy) {
-//        // Pobierz wszystkie książki
-//        List<BookDto> allBooks = getAllBooks();
-//
-//        // Wykonaj filtrowanie na podstawie wszystkich parametrów
-//        List<BookDto> filteredBooks = allBooks.stream()
-//                .filter(book -> (book.getAuthor().contains()))
-//                .collect(Collectors.toList());
-//
-//        return filteredBooks;
-//    }
-
-
-
     @Override
     public BookDto findBookByHash(String bookHash) {
         Book book = bookRepository.findByHash(bookHash).get();
         return BookMapper.mapToBookDto(book);
     }
 
-    @Override
+
     public List<BookDto> getBooksByUser() {
         String email = SecurityUtils.getCurrentUser().getUsername();
         User createdBy = userRepository.findByEmail(email);
@@ -176,12 +145,6 @@ public class BookServiceImpl implements BookService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public List<BookDto> getBooksByUserId(Long id) {
-        List<Book> books = bookRepository.findBooksByUser(id);
-        return books.stream()
-                .map(BookMapper::mapToBookDto)
-                .collect(Collectors.toList());
-    }
+
 }
 

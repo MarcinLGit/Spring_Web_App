@@ -12,6 +12,6 @@ public interface CommentService {
     void modifyComment(CommentDto commentDto,Long bookId);
     List<CommentDto> findCommentsByBook();
     List<CommentDto> findCommentsByBookId(Long bookId);
-    List<CommentDto> findCommentsByUserId(Long userId);
     CommentDto findCommentById(Long commentId);
+
 }

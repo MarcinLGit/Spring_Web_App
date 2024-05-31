@@ -3,7 +3,6 @@ package com.freelibrary.Paplibrary.comment;
 import com.freelibrary.Paplibrary.book.Book;
 import com.freelibrary.Paplibrary.user.User;
 import com.freelibrary.Paplibrary.user.UserRepository;
-import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import com.freelibrary.Paplibrary.comment.CommentDto;
 import com.freelibrary.Paplibrary.book.BookDto;
@@ -11,9 +10,7 @@ import com.freelibrary.Paplibrary.comment.CommentService;
 import com.freelibrary.Paplibrary.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +19,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
@@ -45,12 +44,13 @@ public class CommentController {
     @PostMapping("/{bookId}/addcomment")
     public String createComment(@PathVariable("bookId") Long bookId,
                                 @Valid @ModelAttribute("comment") CommentDto commentDto,
-                                SecurityContextHolderAwareRequestWrapper request,
                                 BindingResult result,
                                 Model model){
 
         BookDto bookDto = bookService.findBookById(bookId);
         if(result.hasErrors()){
+
+
             model.addAttribute("book", bookDto);
             model.addAttribute("comment", commentDto);
             // return "book/book_comment";
@@ -58,17 +58,15 @@ public class CommentController {
         }
 
         commentService.createComment(bookId, commentDto);
-        if( request.isUserInRole("ROLE_ADMIN")){
-            return "/admin/books/" + bookId;
-        }
         return "redirect:/book/" + bookId;
     }
+
+
 
     //modyfikacja komentarza wsunąć do comments bo nie działało i dodać w takim razie /book/ na początku
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/book/{bookId}/comment/edit/{commentId}")
-    public String editCommentForm(SecurityContextHolderAwareRequestWrapper request,
-            @PathVariable("bookId") Long bookId, @PathVariable("commentId") Long commentId, Model model) {
+    public String editCommentForm(@PathVariable("bookId") Long bookId, @PathVariable("commentId") Long commentId, Model model) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByEmail(email);
 
@@ -76,44 +74,31 @@ public class CommentController {
                 .orElseThrow(() -> new IllegalArgumentException("Comment not found: " + commentId));
 
 
-        if (!user.getId().equals(comment1.getCreatedBy().getId()) && !request.isUserInRole("ROLE_ADMIN")) {
+        if (!user.getId().equals(comment1.getCreatedBy().getId())) {
             throw new SecurityException("You are not authorized to edit this comment");
         }
-
 
         CommentDto comment = commentService.findCommentById(commentId);
         model.addAttribute("bookId", bookId);
         model.addAttribute("comment", comment);
-        if( request.isUserInRole("ROLE_ADMIN")){
-            return "admin/editCommentPage";
-        }
         return "book/editCommentPage";
     }
 
     //  modyfikacja komentarza
     @PreAuthorize("isAuthenticated()")
     @PostMapping("/book/{bookId}/comment/edit")
-    public String editComment( SecurityContextHolderAwareRequestWrapper request,
-                               @PathVariable("bookId") Long bookId,
+    public String editComment(@PathVariable("bookId") Long bookId,
                               @ModelAttribute("comment") CommentDto commentDto) {
 
         commentService.modifyComment(commentDto, bookId);
-        if(request.isUserInRole("ROLE_ADMIN")){
-            return "redirect:/admin/books/" + bookId;
-        }
         return "redirect:/book/" + bookId;
     }
-
     //usunięcie komentarza do książki
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/book/{bookId}/comment/delete/{commentId}")
-    public String deleteComment(SecurityContextHolderAwareRequestWrapper request,
-                                @PathVariable("bookId") Long bookId,
+    public String deleteComment(@PathVariable("bookId") Long bookId,
                                 @PathVariable("commentId") Long commentId) {
         commentService.deleteComment(commentId);
-        if(request.isUserInRole("ROLE_ADMIN")){
-            return "redirect:/admin/books/" + bookId;
-        }
         return "redirect:/book/" + bookId;
     }
 

@@ -23,4 +23,6 @@ public class CommentDto {
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
     private Long addedby;
+    private String createdOnFormat;
+    private String updatedOnFormat;
 }
