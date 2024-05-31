@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            text-align: right;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 999;
+        }
+        .navbar a {
+            display: inline-block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            text-align: center;
+            margin-top: 60px; /* To give space for the fixed navbar */
+        }
+        .details {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 300px;
+        }
+        .details p {
+            text-align: left;
+            margin: 10px 0;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 300px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a th:href="@{/admin}" >Panel Admina</a>
+    <a th:href="@{/admin/books}" >Zarządzanie Książkami</a>
+    <a th:href="@{/admin/users}" >Zarządzanie Użytkownikami</a>
+    <a th:href="@{/logout}" >Wyloguj się</a>
+</div>
+
+<div class="container">
+    <h1>Dodaj Komentarz</h1>
+    <form action="" method="post" id="commentForm">
+        <div class="form-group">
+            <label for="bookId">ID Książki</label>
+            <input type="text" class="form-control" id="bookId" name="bookId" required>
+        </div>
+        <div class="form-group">
+            <label for="name">Imię</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email (opcjonalnie)</label>
+            <input type="email" class="form-control" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="content">Komentarz</label>
+            <textarea class="form-control" id="content" name="content" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Dodaj Komentarz</button>
+    </form>
+
+    <!-- Wyświetlenie komentarzy -->
+    <div class="mt-5">
+        <h2>Komentarze do książki</h2>
+        <ul>
+            <li th:each="comment : ${comments}">
+                <p><strong>Użytkownik:</strong> <span th:text="${comment.user}"></span></p>
+                <p><strong>Treść:</strong> <span th:text="${comment.content}"></span></p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#commentForm').submit(function(event) {
+            event.preventDefault();
+
+            var bookId = $('#bookId').val();
+
+            $(this).attr('action', '/' + bookId + '/comments');
+
+            this.submit();
+        });
+    });
+</script>
+</body>
+</html>

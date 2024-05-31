@@ -10,6 +10,8 @@ import com.freelibrary.Paplibrary.user.UserRepository;
 import com.freelibrary.Paplibrary.comment.CommentService;
 import com.freelibrary.Paplibrary.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -73,7 +75,9 @@ public class CommentServiceImpl implements CommentService {
 
         Comment comment = commentRepository.findById(commentId).get();
 
-        if(user.getId() != comment.getCreatedBy().getId()) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(user.getId() != comment.getCreatedBy().getId()  && auth != null
+                && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
             throw new SecurityException("You are not authorized to delete this book");
         }
 
@@ -94,8 +98,10 @@ public class CommentServiceImpl implements CommentService {
         Long comment_id = commentDto.getId();
         Comment comment1 = commentRepository.findById(comment_id).get();
 
-        if(user.getId() != comment1.getCreatedBy().getId()) {
-            throw new SecurityException("You are not authorized to delete this book");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(user.getId() != comment1.getCreatedBy().getId()  && auth != null
+                && auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
+            throw new SecurityException("You are not authorized to modify this book");
         }
             CommentDto  commentDto1 = findCommentById(commentDto.getId());
             commentDto1.setContent(commentDto.getContent());
@@ -136,6 +142,11 @@ public class CommentServiceImpl implements CommentService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<CommentDto> findCommentsByUserId(Long userId) {
+        return List.of();
+    }
+
 
     @Override
     public CommentDto findCommentById(Long commentId) {
@@ -143,7 +154,6 @@ public class CommentServiceImpl implements CommentService {
             Comment comment = commentRepository.findById(commentId).get();
             return CommentMapper.mapToCommentDto(comment);
     }
-
 
 
 }
