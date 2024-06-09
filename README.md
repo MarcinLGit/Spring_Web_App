@@ -1,16 +1,12 @@
 # PAP2024L-Z14
 Zespół:
-- Tomasz Kurzela
-- Marcin Łobacz
-- Aleksandr Rogaczewski
-- Szymon Stec
-
-Opiekun:
-- Kacper Kania
+- Marcin Ł.
+- Aleksandr R.
+- Szymon S.
 
 # Temat: Internetowy portal udostępniania zasobów
 
-Aplikacja webowa, która pozwoli udostępniać własne pliki oraz przeszukiwać i pobierać pliki wstawione przez innych użytkowników.
+Aplikacja webowa, która pozwoli udostępniać książki oraz przeszukiwać i pobierać książki wstawione przez innych użytkowników.
 
 # Wymagnia wstępne
 1 Oczywistość interakcji (umiejscowienie elementów na stronie w intuicyjny sposób, np. logowanie umieszczone w widocznym miejscu, a nie ukryte na końcu strony), klarowność (zastosowanie atrakcyjnej kolorystyki i odpowiedniego stylu za pomocą CSS, co ułatwia nawigację użytkownikowi), innowacyjność (wykorzystanie interaktywnych funkcji na stronie, podpowiedzi w polach tekstowych, walidacja wprowadzanych danych oraz wyświetlanie informacyjnych komunikatów, np. po pomyślnym zalogowaniu), oraz jakość wykonania (poprawność działania aplikacji, obsługa błędów poprzez wyświetlanie spójnych stron zgodnych z całą stylistyką aplikacji, np. w przypadku próby usunięcia powiązanego rekordu, nieistniejącej strony, lub błędu wewnętrznego). 
@@ -36,8 +32,3 @@ Dla perspektywy „szerokiej”, czyli użytkownika na prawach administratora, p
 Dla perspektywy „wąskiej”, czyli zwykłego użytkownika, oprócz możliwości przeglądania danych, powinna być dostępna co najmniej jedna z pozostałych operacji. Na przykład, użytkownik może mieć możliwość modyfikacji swoich danych osobowych, ale nie usuwania ani dodawania nowych danych w systemie. 
 
 Ważne jest, aby aplikacja zapewniała odpowiednie zabezpieczenia i kontrole dostępu, aby użytkownicy mieli dostęp tylko do tych operacji, do których mają uprawnienia. Na przykład, użytkownik z perspektywy „wąskiej” nie powinien mieć możliwości wykonywania operacji, do których nie ma uprawnień, takich jak usuwanie danych innych użytkowników. 
-
-
-4 Baza danych jest prosta ma tylko 2 tabeli wiele do wielu, które zawierają dane użytkownika oraz informacje o przypisanych do niego książek 
-
- 
